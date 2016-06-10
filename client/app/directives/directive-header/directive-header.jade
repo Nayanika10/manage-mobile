@@ -1,0 +1,24 @@
+// Changing this directive will impact: job.applicants job.applicants.new job.references.list
+div
+  .bg-light.b-b.padder(style='position: absolute;width: 100%;background: #fff; z-index: 2;height: 42px;')
+    ul.nav.nav-pills.nav-sm.m-t-xs
+      li: label.i-checks.m-t-xs.m-b-none(ng-show="buttons.buckets")
+        input(type='checkbox' ng-click='viewdata.setChecked(viewdata.checkAll)' ng-model='viewdata.checkAll')
+        i.m-r-none(ng-if='viewdata.applicants.length > 0')
+      li(ng-repeat='status in viewdata.buckets' ui-sref-active="active" ng-show="buttons.buckets")
+        a(ui-sref='job.applicants.list({jobId:viewdata.job.id,status: status})' ng-bind="status")
+      li(ui-sref-active="active" ng-show="buttons.interviews")
+        a(ui-sref='job.interviews.list({jobId:viewdata.job.id})') Interviews
+      li(ui-sref-active="active" ng-show="buttons.references")
+        a(ui-sref='job.references.list({jobId:viewdata.job.id})') CV(s) Received
+  .wrapper-xs.bg-light.b-b(style='position: absolute; right: 0;background: #fff; z-index: 3;')
+    ul.nav.nav-pills.nav-sm
+      li
+        // Todo: Directive isolation App
+        button.btn.btn-primary.btn-sm(ng-if='viewdata.getApplicants({checked: true}, "id").length>0' ng-click='App.downloadApplicant(viewdata.getApplicants({checked: true}, "id"))') Download CV(s)
+      li: a.fa.fa-share-alt.b-2x.text-info.b-a.b-info(ng-show="buttons.share" ng-click="App.shareLink(viewdata.job)")
+      li: a.h5.b-2x.font-bold.b-a(ng-class="buttons.highlight == 'view'?'btn-info':'b-info text-info ' " ng-show="buttons.view"  ui-sref='job.view({jobId:viewdata.job.id})') View JD
+      li: a.h5.b-2x.font-bold.b-a(ng-class="buttons.highlight == 'view-applicants'?'btn-success b-success':'b-info text-info' " ng-show="buttons.viewApplicants"  ui-sref='job.applicants.list({jobId:viewdata.job.id})') View Applicants
+      li: a.h5.b-2x.font-bold.b-a(ng-class="buttons.highlight == 'upload'?'btn-success b-success':'b-info text-info' " ng-show="buttons.upload"  ui-sref='job.applicants.new({jobId:viewdata.job.id})') Upload CV
+
+  .h5.btn-info.b-a.b-info.b-2x.font-bold

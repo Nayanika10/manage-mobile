@@ -1,0 +1,161 @@
+div
+  //-Dashboard
+  .hbox#dashboard
+    .col
+      .wrapper-md.b-b
+        .col-md-6.col-sm-12.col-xs-12.no-padder-left
+          .col-md-12.col-sm-12.col-xs-12.panel.panel-warning.no-padder(ng-show="Dashboard.summary.countData.length > 0")
+            .panel-heading.font-bold.h4.text-ellipsis.panel-heading-info
+              .fa.fa-area-chart.text-dark
+              | &nbsp;&nbsp;Actions
+            .panel-body.p-5px.col-divider
+              .col-md-3.col-xs-12.text-center.no-padder(ng-repeat="item in Dashboard.summary.countData"
+              ng-init="countDataColors = ['text-warning-dk','text-success-dk','text-info-dk','text-primary-dk']")
+                div(style="height:40px" ng-bind="item.name")
+                h1.h1.m-b-sm(ng-class="countDataColors[$index]")
+                  span.text-2x.text-lt(ng-bind="item.count")
+          .col-md-12.col-sm-12.col-xs-12.panel.panel-default.no-padder(ng-show="Dashboard.summary.applicantData.length > 0")
+            .panel-heading.font-bold.h4.text-ellipsis.bg-light.panel-heading-info
+              .fa.fa-area-chart
+              | &nbsp;&nbsp;Actions Required
+              i.fa.fa-angle-right.pull-right.font-bold
+            .panel-body.p-5px
+              scrollable-table(watch="Dashboard.summary.applicantData")
+                table.table.table-striped.table-bordered.m-b
+                  thead
+                    tr
+                      th.font-bold Name
+                      th.font-bold Positions
+                      th.font-bold(style="width:25%") Status
+                  //(ng-if='Dash.pipeline.length>0')
+                  tbody
+                    tr(ng-class="$last ?'':'b-b'" ng-repeat='applicant in Dashboard.summary.applicantData' )
+                      td: a.text-ellipsis(ui-sref="applicant.view({applicantId: applicant.id})" ng-bind="applicant.name")
+                      td: a(ui-sref="job.view({jobId: applicant._root_})")
+                        div(ng-bind="applicant.exp_designation")
+                        //span.text-muted.text-company.text-ellipsis(ng-bind="applicant.exp_employer")
+                      td(ng-bind="applicant.state_name")
+          .col-md-12.col-sm-12.col-xs-12.no-padder-left.panel.panel-success(ng-show="Dashboard.summary.newProfileData.length > 0")
+            .panel-heading.font-bold.h4.text-ellipsis.bg-light.panel-heading-info
+              .fa.fa-area-chart.text-success
+              | &nbsp;&nbsp;New Profiles
+              i.fa.fa-angle-right.pull-right.font-bold
+            .panel-body.p-5px
+              scrollable-table(watch="Dashboard.summary.newProfileData")
+                table.table.table-striped.m-b
+                  thead
+                    tr
+                      th.font-bold Name
+                      th.font-bold Location
+                      th.font-bold Salary
+                  //(ng-if='Dash.pipeline.length>0')
+                  tbody
+                    tr(ng-if="!Dashboard.summary.newProfileData.length")
+                      td(colspan="3")
+                        h4.text-center No New Profiles
+                    tr(ng-class="$last ?'':'b-b'" ng-repeat='job in Dashboard.summary.newProfileData' ui-sref='job.view({jobId: job.id})')
+                      td: a(ui-sref='job.view({jobId: job.id})') {{job.role}}
+                      td
+                        i.fa.fa-map-marker
+                        a(ui-sref='job.view({jobId: job.id})')
+                        | &nbsp;&nbsp;{{job.jobLocation}}
+                      td(ng-bind="job.salaryRange?job.salaryRange:'Not Disclosed'")
+        .col-md-6.col-sm-12.col-xs-12.no-padder
+          .col-md-12.col-sm-12.col-xs-12.no-padder.panel.panel-info(ng-show="Dashboard.summary.screeningRatio")
+            .panel-heading.font-bold.h4.text-ellipsis.panel-heading-info
+              .fa.fa-area-chart.text-primary
+              | &nbsp;&nbsp;Performance Meter
+              span.pull-right
+                i.fa(ng-repeat="i in [1,2,3,4,5]" ng-class="i<=Dashboard.summary.rating? 'fa-star' : (((Dashboard.summary.rating-0)%1)!=0 && i== Dashboard.Math.ceil(Dashboard.summary.rating) ? 'fa-star-half-o' : 'fa-star-o')")
+            .panel-body.p-5px.col-divider
+              .col-md-6.col-xs-12.text-center.no-padder
+                .col-md-6.no-padder
+                  .m-t-lg
+                  .font-bold Screening Ratio
+                .col-md-6.no-padder
+                  h1.h1.text-primary-dk.m-b-sm.padder-md.m-t-xs(style="width: 140px;position: relative;")
+                    div(easypiechart options="Dashboard.summary.EPCScreening" percent="Dashboard.summary.screeningRatio")
+                      span(style="position:absolute;top: 24%;left: 36%;font-size: 24px;" ng-bind="Dashboard.summary.screeningRatio+'%'")
+              .col-md-6.col-xs-12.text-center.no-padder
+                .col-md-6.no-padder
+                  .m-t-lg
+                  .font-bold Shortlisting Ratio
+                .col-md-6.no-padder
+                  h1.h1.text-info-dk.m-b-sm.padder-md.m-t-xs(style="width: 140px;position: relative;")
+                    div(easypiechart options="Dashboard.summary.EPCShortlist" percent="Dashboard.summary.shortlistingRatio")
+                      span(style="position:absolute;top: 24%;left: 36%;font-size: 24px;" ng-bind="Dashboard.summary.shortlistingRatio+'%'")
+          .col-md-12.col-sm-12.col-xs-12.panel.panel-success.no-padder(ng-show="Dashboard.summary.upcomingInterviewData.length > 0")
+            .panel-heading.font-bold.h4.text-ellipsis.bg-light.panel-heading-info
+              .fa.fa-area-chart.text-warning
+              | &nbsp;&nbsp;Interview for the day
+              i.fa.fa-angle-right.pull-right.font-bold
+            .panel-body.p-5px
+              scrollable-table(watch="Dashboard.summary.upcomingInterviewData")
+                table.table.table-striped.m-b
+                  thead
+                    tr
+                      th.font-bold Name
+                      th.font-bold Type
+                      //th.font-bold Details
+                      th.font-bold Time
+                  //(ng-if='Dash.pipeline.length>0')
+                  tbody
+                    tr(ng-if="!Dashboard.summary.upcomingInterviewData.length")
+                      td(colspan="4")
+                        h4.text-center No Interviews.
+                    tr(ng-class="$last ?'':'b-b'" ng-repeat='applicant in Dashboard.summary.upcomingInterviewData')
+                      td: a(ui-sref='applicant.view({applicantId: applicant.id})' ng-bind="applicant.name")
+                      td
+                        i.fa(ng-class="{'fa-users':applicant.stateName =='Personal Interview','fa-skype text-skype':applicant.stateName =='Video Interview','fa-phone text-phone':applicant.stateName =='Telephonic Interview'}")
+                        | &nbsp;&nbsp; {{applicant.stateName.replace("Interview",'')  }}
+                      //td(ng-bind="applicant.mobile")
+                      td(ng-bind="applicant.interviewTime")
+          .col-md-12.col-sm-12.col-xs-12.panel.panel-success.no-padder(ng-show="Dashboard.summary.upcomingOfferData.length > 0")
+            .panel-heading.font-bold.h4.text-ellipsis.bg-light.panel-heading-info
+              .fa.fa-area-chart.text-danger
+              | &nbsp;&nbsp;Upcoming Offers
+              i.fa.fa-angle-right.pull-right.font-bold
+            .panel-body.p-5px
+              scrollable-table(watch="Dashboard.summary.upcomingOfferData")
+                table.table.table-striped.m-b
+                  thead
+                    tr
+                      th.font-bold Client Name
+                      th.font-bold Name
+                      th.font-bold Position
+                      th.font-bold Joining Date
+                  tbody
+                    tr(ng-class="$last ?'':'b-b'" ng-repeat='applicant in Dashboard.summary.upcomingOfferData')
+                      td: a(ui-sref='job.view({jobId: offer.jobId})' ng-bind="applicant.jobClientName")
+                      td: a(ng-bind="applicant.name")
+                      td(ng-bind="applicant.jobRole")
+                      td(ng-bind="applicant.joinDate")
+        .clear
+        .clearfix
+        .col-md-12.col-sm-12.col-xs.no-padder
+          .col-md-4.no-padder.hide
+            .panel.panel-success
+              .panel-heading.font-bold.h4.text-ellipsis.bg-light.panel-heading-info
+                | CV Received
+                i.fa.fa-angle-right.pull-right.font-bold
+              .panel-body.p-5px
+                table.table.table-striped.m-b
+                  thead
+                    tr
+                      th.font-bold Client Name
+                      th.font-bold Name
+                      th.font-bold Position
+                      th.font-bold Joining Date
+                  //(ng-if='Dash.pipeline.length>0')
+                  tbody
+                    tr(ng-class="$last ?'':'b-b'" ng-repeat='pipe in [{id:5,role:"Software Engineer",count:5},{id:5,role:"Software Engineer",count:5}] | orderBy:"-count"')
+                      td: a(ui-sref='app.jobs.manage({jobId: pipe.id, bucket:"Pending Feedback"})') {{pipe.role}}
+                      td: a(ui-sref='app.jobs.manage({jobId: pipe.id, bucket:"Pending Feedback"})')
+                        i.fa.fa-phone
+                        | &nbsp;&nbsp;Manager
+                      td Interview Scheduling Attempted
+                      td Interview Scheduling Attempted
+
+        .clear
+        .clearfix
+

@@ -1,0 +1,101 @@
+div#jobs-references-view
+  .col-md-3.no-padder.fixed-applicant-details
+    div(style='position: relative; height: 100%; width: 100%; top: 0; overflow-x: hidden; overflow-wrap: break-word;')
+      //- Applicant top cover container
+      .wrapper-xs.bg-info.dker.m-b-xs
+        .hbox.m-t-xs
+          .col.thumb-lg
+            .fa-stack.fa-3x.text-info-dker
+              i.fa.fa-circle.fa-stack-2x.fa-inverse
+              i.fa.fa-user.fa-stack-1x.fa-2x.m-t-xs
+          .col.v-middle
+            .h4
+              | {{JobsReferenceView.data.name}}
+              i.btn.text-white.fa.fa-download(ng-click='App.downloadApplicant([JobsReferenceView.data.id])' title='Download CV')
+
+
+      //- Applicant Details
+
+      //- Applicant Employee Information
+      .panel.panel-default.no-border
+        .panel-heading.bg-dark.lter.h4
+          .h4.text-white Employee Information
+        .panel-body
+          .h4.m-l-xs
+            .text-info-dker Designation
+            .font-thin {{JobsReferenceView.data.designation}}
+          .h4.m-l-xs.m-t-sm
+            .text-info-dker Current Company
+            .font-thin {{JobsReferenceView.data.employer}}
+          .h4.m-l-xs.m-t-sm
+            .text-info-dker Qualification
+            .font-thin {{JobsReferenceView.data.degree_id}}
+          .h4.m-l-xs.m-t-sm
+            .text-info-dker Designation
+            .font-thin {{JobsReferenceView.data.designation}}
+          .h4.m-l-xs.m-t-sm
+            .text-info-dker Location
+            .font-thin {{JobsReferenceView.data.location}}
+          .h4.m-l-xs.m-t-sm
+            .text-info-dker Current CTC
+            .font-thin {{JobsReferenceView.data.salary}} Lakhs
+          .h4.m-l-xs.m-t-sm
+            .text-info-dker Expected CTC
+            .font-thin {{JobsReferenceView.data.expected_ctc}} Lakhs
+          .h4.m-l-xs.m-t-sm
+            .text-info-dker Work Experience
+            .font-thin {{JobsReferenceView.data.total_exp | number: 0}} Years
+          .h4.m-l-xs.m-t-sm
+            .text-info-dker Notice Period
+            .font-thin {{JobsReferenceView.data.notice_period}} Days
+
+      //- Applicant Contact Details
+      .panel.panel-default.no-border
+        .panel-heading.bg-dark.lter.h4
+          .h4.text-white Contact Details
+        .panel-body
+          .h4.m-xs
+            i.fa.fa-lg.fa-phone.text-success-dker.wrapper-xs
+            |  &nbsp; {{JobsReferenceView.data.number}}
+          .h4.m-xs
+            i.fa.fa-lg.fa-envelope.text-info-dker.wrapper-xs
+            |  &nbsp; {{JobsReferenceView.data.email}}
+
+      //- Applicant Skills
+      .panel.panel-default.no-border(ng-if="JobsReferenceView.data.skills.length")
+        .panel-heading.bg-dark.lter.h4
+          .h4.text-white Skills
+        .panel-body
+          .h6.clearfix
+            .pull-left.b-a.b-info.text-info-dker.m-r-xs.m-b-xs.r(ng-repeat='skill in JobsReferenceView.data.skills' style='padding: 2px;' ng-if='JobsReferenceView.data.showAllSkill || $index < 6') {{skill}}
+            a.pull-left(ng-click='JobsReferenceView.data.showAllSkill = !JobsReferenceView.data.showAllSkill')
+              span.font-bold.text-info-dker(ng-if='JobsReferenceView.data.showAllSkill') – Less
+              span.font-bold.text-info-dker(ng-if='!JobsReferenceView.data.showAllSkill') + More
+
+      //- Applicant Followers
+      //.panel.panel-default.no-border.hide
+      //  .panel-heading.bg-dark.lter.h4
+      //    .h4.text-white Followers
+      //    button.btn.btn-rounded.btn.btn-icon.btn-default.pull-right
+      //      i.fa.fa-user-plus(ng-click='App.addFollower([JobsReferenceView.data.follower],JobsReferenceView.data.id)' title='Add Follower')
+      //  .panel-body
+      //    .h6.clearfix
+      //      .pull-left.b-a.b-info.text-info-dker.m-r-xs.m-b-xs.r(ng-repeat='follower in JobsReferenceView.data.follower' style='padding: 2px;' ng-if='JobsReferenceView.data.showAllFollower || $index < 6') {{follower.name}}
+      //      a.pull-left(ng-click='JobsReferenceView.data.showAllFollower = !JobsReferenceView.data.showAllFollower')
+      //        span.font-bold.text-info-dker(ng-if='JobsReferenceView.data.showAllFollower') – Less
+      //        span.font-bold.text-info-dker(ng-if='!JobsReferenceView.data.showAllFollower') + More
+
+    //- Resume container
+  .col-md-9.no-padder.fixed-resume(style="left: 25%;")
+    .wrapper-xs.bg-light.b-b(style='position: fixed;width: 100%;background: #fff; z-index: 2;')
+      .wrapper-xs.bg-light.b-b(style='position: fixed; right: 0;background: #fff; z-index: 3;')
+        ul.nav.nav-pills.nav-sm
+          li: a.h5.b-a.b-default.b-2x.text-success.font-bold(ng-if='JobsReferenceView.data.approval_status == "Approved"' ng-bind="JobsReferenceView.data.approval_status")
+          li: a.h5.b-a.b-default.b-2x.text-danger.font-bold(ng-if='JobsReferenceView.data.approval_status == "Duplicate"' ng-bind="JobsReferenceView.data.approval_status")
+          li: a.h5.b-a.b-default.b-2x.text-danger.font-bold(ng-if='JobsReferenceView.data.approval_status == "Reject"') Rejected
+        ul.nav.nav-pills.nav-sm(ng-if='JobsReferenceView.data.approval_status == "Action Required"')
+          li: a.h5.b-a.b-default.b-2x.text-muted.font-bold(ng-click="JobsReferenceView.changeState({accept:false})") Reject
+          li: a.h5.b-a.b-info.b-2x.text-info.font-bold(ng-click="JobsReferenceView.changeState({accept:false})") Accept
+    div(style='position: relative; height: 100%; width: 100%; top: 50px; overflow: hidden;')
+      iframe.h-full.b-a.b-light.w-full(ng-src='{{JobsReferenceView.trustSrc(JobsReferenceView.resumeSrc)}}')
+

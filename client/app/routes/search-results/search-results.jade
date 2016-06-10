@@ -1,0 +1,336 @@
+.hbox
+  //.col.w
+  //  //div(ng-controller='NavJobsController as Job' style='position: relative;')
+  //  div( style='position: relative;' ng-init="sideb = {showCEMFacet:false,showCFacet:false,showCUNFacet:false}")
+  //    .w.m-t-xl.nav-job(style='margin-top: 0px !important;top: 99px !important;width: 223px !important;')
+  //      .w.m-t-xs(style='position: relative;  overflow-y: scroll; overflow-x: hidden; height: 100%; width: 234px;')
+  //        .m-t-sm
+  //        .m-t-sm
+  //        .m-t-sm
+  //        .panel.panel-info.no-border
+  //          .panel-heading-info.panel-heading(ng-click="sideb.showCEMFacet = !sideb.showCEMFacet" )
+  //            span Consultant EM
+  //            i.fa.pull-right(ng-class="sideb.showCEMFacet?'fa-angle-down':'fa-angle-right'")
+  //            i.fa.fa-refresh.pull-right(ng-click='query.eng_mgr_name_sf = {}', ng-show='sideb.showCEMFacet')
+  //          .panel-body.m-b-md(ng-show='sideb.showCEMFacet')
+  //            .form-group.w-full
+  //              .input-group.w-full
+  //                input.form-control.input-sm.bg-light.no-border.rounded.padder.ng-pristine.ng-valid.ng-touched(type='text', ng-model='consultantEM', placeholder='Consultant EM', style='background-color: rgb(217, 227, 230);', aria-autocomplete='list', aria-expanded='false', aria-owns='typeahead-5-6521')
+  //                span.input-group-btn
+  //                  button.btn.btn-sm.bg-light.rounded(type='submit', style='background-color:#D9E3E6')
+  //                    i.fa.fa-search
+  //            div(ng-repeat='(index, eng_mgr_facet) in facet_counts.facet_fields.eng_mgr_name_sf | filter:consultantEM | limitTo:20 track by $index', ng-if='$even')
+  //              span.text-ellipsis( title='{{eng_mgr_facet}}({{facet_counts.facet_fields.eng_mgr_name_sf[index+1]}})' style="margin-bottom: 5px;")
+  //                input(type="checkbox"  id="sideb.showCEMFacet_{{$index}}"  ng-model='query.eng_mgr_name_sf[eng_mgr_facet]')
+  //                span(ng-click="query.eng_mgr_name_sf[eng_mgr_facet] = !query.eng_mgr_name_sf[eng_mgr_facet]") {{eng_mgr_facet | capitalize}} ({{facet_counts.facet_fields.eng_mgr_name_sf[index+1]}})
+  //
+  //          // Consultant Company Facet
+  //        .panel.panel-info.no-border
+  //          .panel-heading-info.panel-heading(ng-click='sideb.showCFacet = !sideb.showCFacet')
+  //            span Consultant
+  //            i.fa.pull-right(ng-class="sideb.showCFacet?'fa-angle-down':'fa-angle-right'")
+  //            i.fa.fa-refresh.pull-right(ng-click='query.client_name_sf = {}', ng-show='sideb.showCFacet')
+  //          .panel-body.m-b-md(ng-show='sideb.showCFacet')
+  //            .form-group.w-full
+  //              .input-group.w-full
+  //                input.form-control.input-sm.bg-light.no-border.rounded.padder.ng-pristine.ng-valid.ng-touched(type='text', ng-model='clientName', placeholder='Consultant Name', style='background-color: rgb(217, 227, 230);', aria-autocomplete='list', aria-expanded='false', aria-owns='typeahead-5-6521')
+  //                span.input-group-btn
+  //                  button.btn.btn-sm.bg-light.rounded(type='submit', style='background-color:#D9E3E6')
+  //                    i.fa.fa-search
+  //            div(ng-repeat='(index, client_name_sf_facet) in facet_counts.facet_fields.client_name_sf | filter:clientName | limitTo:20 track by $index', ng-if='$even')
+  //              span.text-ellipsis(title='{{client_name_sf_facet}}({{facet_counts.facet_fields.client_name_sf[index+1]}})' style="margin-bottom: 5px;")
+  //                input(type="checkbox"  id="clients_{{$index}}"  ng-model='query.client_name_sf[client_name_sf_facet]')
+  //                span(ng-click="query.client_name_sf[client_name_sf_facet] = !query.client_name_sf[client_name_sf_facet]") {{client_name_sf_facet | capitalize}} ({{facet_counts.facet_fields.client_name_sf[index+1]}})
+  //
+  //          // Consultant Username Facet
+  //        .panel.panel-info.no-border
+  //          .panel-heading-info.panel-heading(ng-click='sideb.showCUNFacet = !sideb.showCUNFacet')
+  //            span Consultant Username
+  //            //Username
+  //            i.fa.pull-right(ng-class="sideb.showCUNFacet?'fa-angle-down':'fa-angle-right'")
+  //            i.fa.fa-refresh.pull-right(ng-click='query.consultant_username_sf = {}', ng-show='sideb.showCUNFacet')
+  //          .panel-body.m-b-md(ng-show='sideb.showCUNFacet')
+  //            .form-group.w-full
+  //              .input-group.w-full
+  //                input.form-control.input-sm.bg-light.no-border.rounded.padder.ng-pristine.ng-valid.ng-touched(type='text', ng-model='consultantUser', placeholder='Consultant UserName', style='background-color: rgb(217, 227, 230);', aria-autocomplete='list', aria-expanded='false', aria-owns='typeahead-5-6521')
+  //                span.input-group-btn
+  //                  button.btn.btn-sm.bg-light.rounded(type='submit', style='background-color:#D9E3E6')
+  //                    i.fa.fa-search
+  //            div(ng-repeat='(index, consultant_username_sf_facet) in facet_counts.facet_fields.consultant_username_sf | filter:consultantUser | limitTo:20 track by $index', ng-if='$even')
+  //              span.text-ellipsis(title='{{consultant_username_sf_facet}}({{facet_counts.facet_fields.consultant_username_sf[index+1]}})' style="margin-bottom: 5px;")
+  //                input(type="checkbox"  id="consultantUser_{{$index}}"  ng-model='query.consultant_username_sf[consultant_username_sf_facet]')
+  //                span(ng-click="query.consultant_username_sf[consultant_username_sf_facet] = !query.consultant_username_sf[consultant_username_sf_facet]") {{consultant_username_sf_facet | capitalize}} ({{facet_counts.facet_fields.consultant_username_sf[index+1]}})
+  //
+  //        //  //client Name
+  //        //.panel.panel-info.no-border
+  //        //  .panel-heading-info.panel-heading(ng-click="sideb.showClientFacet = !sideb.showClientFacet" )
+  //        //    span Client(t:j)
+  //        //    i.fa.pull-right(ng-class="sideb.showClientFacet?'fa-angle-down':'fa-angle-right'")
+  //        //    i.fa.fa-refresh.pull-right(ng-click='query.eng_mgr_name = {}', ng-show='sideb.showClientFacet')
+  //        //  .panel-body.m-b-md
+  //        //    div(ng-repeat='(index, client_facet) in job_facet_counts.facet_fields.client_name track by $index', ng-if='$even', ng-show='sideb.showClientFacet')
+  //        //      input(type="checkbox"  id="sideb.showClientFacet_{{$index}}"  ng-model='queryJob.client_name[client_facet]')
+  //        //      label(for='sideb.showClientFacet_{{$index}}' ng-bind="client_facet + '(' + job_facet_counts.facet_fields.client_name[index+1]+')'")
+  //
+  //        //  //client EM
+  //        //
+  //        //.panel.panel-info.no-border
+  //        //  .panel-heading-info.panel-heading(ng-click="sideb.showClientEMFacet = !sideb.showClientEMFacet")
+  //        //    span Client EM
+  //        //    i.fa.pull-right(ng-class="sideb.showClientEMFacet?'fa-angle-down':'fa-angle-right'")
+  //        //    i.fa.fa-refresh.pull-right(ng-click='query.eng_mgr_name = {}', ng-show='sideb.showClientEMFacet')
+  //        //  .panel-body.m-b-md
+  //        //    div(ng-repeat='(index, clientEM_facet) in job_facet_counts.facet_fields.eng_mgr_name_sf track by $index', ng-if='$even', ng-show='sideb.showClientEMFacet')
+  //        //      input(type="checkbox"  id="sideb.showClientEMFacet_{{$index}}"  ng-model='query.eng_mgr_name_sf[clientEM_facet]')
+  //        //      label(for='sideb.showClientEMFacet_{{$index}}' ng-bind="clientEM_facet + '(' + job_facet_counts.facet_fields.eng_mgr_name_sf[index+1]+')'")
+  //
+  //        //status
+  //        .panel.panel-info.no-border(ng-init=' sideb.showPriorityFacet = true')
+  //          .panel-heading-info.panel-heading(ng-click="sideb.showPriorityFacet = !sideb.showPriorityFacet")
+  //            span Priority
+  //            i.fa.pull-right(ng-class="sideb.showPriorityFacet?'fa-angle-down':'fa-angle-right'")
+  //            i.fa.fa-refresh.pull-right(ng-click='queryJob.job_status = {}', ng-show='sideb.showPriorityFacet')
+  //          .panel-body.m-b-md(ng-show="sideb.showPriorityFacet")
+  //            .form-group.w-full
+  //              .input-group.w-full
+  //                input.form-control.input-sm.bg-light.no-border.rounded.padder.ng-pristine.ng-valid.ng-touched(type='text', ng-model='jobstatus', placeholder='Job Status', style='background-color: rgb(217, 227, 230);', aria-autocomplete='list', aria-expanded='false', aria-owns='typeahead-5-6521')
+  //                span.input-group-btn
+  //                  button.btn.btn-sm.bg-light.rounded(type='submit', style='background-color:#D9E3E6')
+  //                    i.fa.fa-search
+  //            div(ng-repeat="priority in ['High Priority', 'Open', 'Hold',' Closed'] | filter:jobstatus", ng-show='sideb.showPriorityFacet')
+  //              span.text-ellipsis(title="{{priority}}")
+  //                input(type="checkbox"  id="priority_{{priority}}" ng-model='queryJob.job_status[priority]')
+  //                span(ng-click="queryJob.job_status[priority] = !queryJob.job_status[priority]")  {{priority}}
+  //                //label(for='priority_{{id}}' ng-bind="priority")
+  //
+  //        .panel.panel-info.no-border(ng-init='sideb.showStatusFacet = true')
+  //          .panel-heading-info.panel-heading(ng-click='sideb.showStatusFacet = !sideb.showStatusFacet')
+  //            span Status
+  //            i.fa.pull-right(ng-class="sideb.showStatusFacet?'fa-angle-down':'fa-angle-right'")
+  //            i.fa.fa-refresh.pull-right(ng-click='query.state_id = {}', ng-show='sideb.showStatusFacet')
+  //          .panel-body.m-b-md
+  //            div(ng-repeat='(index, state_facet) in facet_counts.facet_fields.state_id track by $index', ng-if='$even', ng-show='sideb.showStatusFacet')
+  //                span.text-ellipsis(title="{{states[+state_facet]}}({{facet_counts.facet_fields.state_id[index+1]}})" style="margin-bottom: 5px;" )
+  //                  input(type="checkbox"  id="status_{{$index}}"  ng-model='query.state_id[+state_facet]')
+  //                  //label(for='location_{{id}}' ng-bind="states[+state_facet] + ' (' + facet_counts.facet_fields.state_id[index+1] +')'")
+  //                  span(ng-click="query.state_id[+state_facet] = !query.state_id[+state_facet]") {{states[+state_facet]}} ({{facet_counts.facet_fields.state_id[index+1]}})
+  //
+  //        .panel.panel-info.no-border
+  //          .panel-heading-info.panel-heading(ng-click='sideb.showRegionFacet = !sideb.showRegionFacet')
+  //            span Location
+  //            i.fa.pull-right(ng-class="sideb.showRegionFacet?'fa-angle-down':'fa-angle-right'")
+  //            i.fa.fa-refresh.pull-right(ng-click='query.exp_location = {}', ng-show='sideb.showRegionFacet')
+  //          .panel-body.m-b-md(ng-show='sideb.showRegionFacet')
+  //            .form-group.w-full
+  //              .input-group.w-full
+  //                input.form-control.input-sm.bg-light.no-border.rounded.padder.ng-pristine.ng-valid.ng-touched(type='text', ng-model='location', placeholder='Location', style='background-color: rgb(217, 227, 230);', aria-autocomplete='list', aria-expanded='false', aria-owns='typeahead-5-6521')
+  //                span.input-group-btn
+  //                  button.btn.btn-sm.bg-light.rounded(type='submit', style='background-color:#D9E3E6')
+  //                    i.fa.fa-search
+  //            div(ng-repeat='(index, location_facet) in facet_counts.facet_fields.exp_location | filter:location | limitTo:20 track by $index', ng-if='$even')
+  //              span.text-ellipsis(title="{{location_facet}}({{facet_counts.facet_fields.exp_location[index+1]}})" style="margin-bottom: 5px;")
+  //                input(type="checkbox"  id="location_{{$index}}"  ng-model='query.exp_location[location_facet]')
+  //                span(ng-click="query.exp_location[location_facet] = !query.exp_location[location_facet] ") {{location_facet | capitalize}} ({{facet_counts.facet_fields.exp_location[index+1]}})
+
+  //div.hbox
+  //  .row(style='position: fixed;width: 92%; z-index: 2;')
+  //    .col-md-3.col-sm-3.col-xs-12.pull-right
+  //      .panel.panel-info.no-border
+  //        .panel-heading-info.panel-heading(ng-click='sideb.showfilter = !sideb.showfilter')
+  //          span Customize Columns &nbsp;&nbsp;
+  //            b.badge.bg-success(style='background-color:#27c24c;')  {{applicants.length}} of {{numFound}}
+  //          //span(style='margin-left: 173px;') ( {{applicants.length}} of {{numFound}} )
+  //          //i.fa.pull-right(ng-class="sideb.showfilter?'fa-angle-down':'fa-angle-right'")
+  //          //i.fa.fa-refresh.pull-right(ng-click='query.exp_location = {}', ng-show='sideb.showfilter')
+  //        .m-b-md(style='margin-left: 13px;margin-top: 9px;')
+  //          div(ng-repeat="filter in allFlags", ng-show='sideb.showfilter')
+  //            input(type="checkbox"  id="filter_{{id}}" ng-model="filter.selected")
+  //            label(for='filter_{{id}}' ng-bind="filter.name")
+  div.m-t-xl(style='padding-left:0px;padding-right:0px;')
+    //.hbox
+    //  .row(style='position: fixed;width: 92%; z-index: 2;')
+    //    .col-md-3.col-sm-3.col-xs-12.pull-right
+    //      .panel.panel-info.no-border
+    //        .panel-heading-info.panel-heading(ng-click='sideb.showfilter = !sideb.showfilter')
+    //          span
+    //            | Customize Columns   
+    //            b.badge.bg-success(style='background-color:#27c24c;')  {{applicants.length}} of {{numFound}}
+    //          // span(style='margin-left: 173px;') ( {{applicants.length}} of {{numFound}} )
+    //          // i.fa.pull-right(ng-class="sideb.showfilter?'fa-angle-down':'fa-angle-right'")
+    //          // i.fa.fa-refresh.pull-right(ng-click='query.exp_location = {}', ng-show='sideb.showfilter')
+    //        .m-b-md(style='margin-left: 13px;margin-top: 9px;')
+    //          div(ng-repeat='filter in allFlags', ng-show='sideb.showfilter')
+    //            input(type='checkbox', id='filter_{{id}}', ng-model='filter.selected')
+    //            label(for='filter_{{id}}', ng-bind='filter.name')
+    .m-t-xl(style='padding-left: 0px;padding-right: 0px;')
+      //
+        <div id="carousel-example" class="carousel slide" data-ride="carousel">
+        <!-- Wrapper for slides
+
+      //#carousel-example.carousel.slide(data-ride='carousel')
+      //  // Wrapper for slides
+      //  .row
+      //    .col-xs-offset-3.col-xs-6
+      //      .carousel-inner
+      //        .item.active
+      //          .carousel-content
+      //            div
+      //              h3 #1
+      //              p
+      //                | This is a ousel slides.
+      //        .item
+      //          .carousel-content
+      //            div
+      //              h3 #2
+      //              p
+      //                | This is another much,mimus
+      //        .item
+      //          .carousel-content
+      //            div
+      //              h3 #3
+      //              p This is the third item.
+      //  // Controls
+      //  a.left.carousel-control(href='#carousel-example', data-slide='prev')
+      //    span.glyphicon.glyphicon-chevron-left
+      //  a.right.carousel-control(href='#carousel-example', data-slide='next')
+      //    span.glyphicon.glyphicon-chevron-right
+
+
+      //.container
+      //  ul.list-group
+      //    li
+      //      .panel.panel-default
+      //        .panel-body
+      //          .panel-header
+      //            p
+      //              strong Candidate Name
+      //            p
+      //              | 9182 Lorem Ipsum
+      //              br
+      //              |                         consectetur adipiscing elit.
+      //              br
+      //              |                        Nullam vel lacus felis.
+      //          .panel-rating
+      //            span.glyphicon.glyphicon-star
+      //            span.glyphicon.glyphicon-star
+      //            span.glyphicon.glyphicon-star
+      //            span.glyphicon.glyphicon-star
+      //            span.glyphicon.glyphicon-star
+      //            p Rate Yourself!
+      .panel-heading-info.panel-heading(ng-click='sideb.showfilter = !sideb.showfilter')
+                span
+                 | Customize Columns   
+                 b.badge.bg-success(style='background-color:#27c24c;')  {{applicants.length}} of {{numFound}}
+      .container(ng-repeat="applicant in applicants")
+        .panel.panel-default
+          .panel-heading
+            p
+              a.text-ellipsis(href='/applicants/{{applicant.id}}') {{applicant.name | capitalize}}
+          .panel-body
+            p
+              span(ng-bind="applicant._root_.client_name + '-' + applicant._root_.recruiter_username ")
+            p
+              span(ng-bind="applicant.client_name + '-' + applicant.consultant_username")
+            p
+              span(ng-bind="applicant._root_.role")
+
+          .container
+            ul.nav.nav-tabs
+              li.active
+                a(data-toggle='tab',href='#Comment',ng-click="$event.preventDefault();")
+                  span.fa.fa-commenting
+
+              li
+                a(data-toggle='tab', href='#Time',ng-click="$event.preventDefault();")
+                  span.fa.fa-clock-o
+
+            .container
+
+              h4
+                span.label.label-primary  {{applicant.state_name}}
+
+
+
+            .tab-content
+              #Comment.tab-pane.fade.in.active
+                p(ng-bind="applicant.latest_comment")
+
+
+              #Time.tab-pane.fade
+                p(ng-bind="moment(applicant.interview_time).format('YYYY-MM-DD')")
+
+      //.container
+      //  .panel.panel-default
+      //    .panel-heading
+      //      p
+      //        Strong Manjesh Vinu
+      //    .panel-body
+      //      p
+      //        | Holachef - holachef
+      //      p
+      //        | Hr Manager - High(5)
+      //      p
+      //        | Job Recruitment - Jobrecruitment
+      //
+      //
+      //    .container
+      //
+      //      ul.nav.nav-tabs
+      //        li.active
+      //          a(data-toggle='tab', href='#Comment') Comment
+      //        li
+      //          a(data-toggle='tab', href='#Time') Time
+      //      .container
+      //
+      //        h4
+      //          span.label.label-primary Screening Rejected
+      //
+      //      .tab-content
+      //        #Comment.tab-pane.fade.in.active
+      //          p
+      //            | Pre-Interview Follow-up-Ringing
+      //
+      //        #Time.tab-pane.fade
+      //          p
+      //            | 06 May 2016,10:23 AM
+      //
+      //
+      //
+      //
+      //
+      //
+      //
+      //.container
+      //  .panel.panel-default
+      //    .panel-heading
+      //      p
+      //        strong Rinku Rahthod
+      //    .panel-body
+      //      p
+      //        | Pepperfry - pepperfry
+      //      p
+      //        | Hr Manager - High(5)
+      //      p
+      //        | Careerpath - careerpath
+      //    .container
+      //      ul.nav.nav-tabs
+      //        li.active
+      //          a(data-toggle='tab', href='#Comment') Comment
+      //        li
+      //          a(data-toggle='tab', href='#Time') Time
+      //
+      //      .container
+      //
+      //        h4
+      //          span.label.label-primary Personal Interview
+      //
+      //
+      //
+      //      .tab-content
+      //        #Comment.tab-pane.fade.in.active
+      //          p
+      //            | Pre-Interview Follow-up-Ringing
+      //
+      //        #Time.tab-pane.fade
+      //          p
+      //            | 06 May 2016,10:23 AM

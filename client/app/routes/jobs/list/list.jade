@@ -1,0 +1,66 @@
+div
+  div
+    .wrapper-md.bg-light.b-b.bg-white
+      h1.m-n.font-thin.h3 Manage JD
+  .wrapper-xs.bg-light.b-b
+    .wrapper-xs.bg-light.b-b
+      .row
+        .col-md-6
+          ul.nav.nav-pills.nav-sm
+            li.m-r-xs(ng-repeat="state in JobsList.allStatus" ui-sref-active="active")
+              a(ui-sref="jobs.list({status:state})")
+                span(ng-bind="state")
+                b.badge.pull-right.bg-info(ng-bind="JobsList.meta.jobsCount[$index].count" )
+        .col-md-6
+          i.input-group.pull-right.col-md-9
+            input.form-control.wrapper-xs(type='text' placeholder='Search Jobs' ng-model='query.$' )
+            a.input-group-addon.bg-info(uib-tooltip='Search' tooltip-placement='left' )
+              i.text-white.fa.fa-search
+
+    .m-b-xs.hbox.m-t-xl(ng-show='JobsList.jobs.length === 0')
+      .col: h1.text-center.text-muted(ng-if='!JobsList.ui.loading') No Jobs
+    table.table.m-b-none.manage-jd(ng-hide='JobsList.jobs.length === 0' ng-init="color={'High Priority':'success','Open': 'info', 'Hold': 'warning', 'Closed': 'danger'}" before-bottom='JobsList.loadJobs()')
+      thead.thead
+        tr
+          th(ng-click="JobsList.orderBy('owner')") Client&nbsp;
+            i.fa(ng-class="'fa-sort-amount' + ((JobsList.order == '-owner')? '-desc':'-asc')")
+          th.col-xs-2(ng-click="JobsList.orderBy('role')") Job Title&nbsp;
+            i.fa(ng-class="'fa-sort-amount' + ((JobsList.order == '-role')? '-desc':'-asc')")
+          th(ng-click="JobsList.orderBy('region')") Location&nbsp;
+            i.fa(ng-class="'fa-sort-amount' + ((JobsList.order == '-region')? '-desc':'-asc')")
+          th(ng-click="JobsList.orderBy('max_sal')") CTC(Lacs)&nbsp;
+            i.fa(ng-class="'fa-sort-amount' + ((JobsList.order == '-max_sal')? '-desc':'-asc')")
+          th(ng-click="JobsList.orderBy('priority')") Priority&nbsp;
+            i.fa(ng-class="'fa-sort-amount' + ((JobsList.order == '-priority')? '-desc':'-asc')")
+          th(ng-click="JobsList.orderBy('score')") Score&nbsp;
+            i.fa(ng-class="'fa-sort-amount' + ((JobsList.order == '-score')? '-desc':'-asc')")
+          th(ng-click="JobsList.orderBy('payment')" ) Payment Model&nbsp;
+            i.fa(ng-class="'fa-sort-amount' + ((JobsList.order == '-payment')? '-desc':'-asc')")
+          th(style="width:5%" ng-hide="JobsList.pageStatus == 'Accepted'") Accept
+          th(style="width:5%" ng-hide="JobsList.pageStatus == 'Hidden'") Hide
+          th(style="width:5%" ng-hide="JobsList.pageStatus == 'Rejected'") Reject
+
+      tbody
+        tr.animate-repeat.bg-white(ng-repeat='job in JobsList.jobs| orderBy:JobsList.order |  filter:query' ng-animate="'animate'" ng-init="job.oldResponseId=job.response_id" ng-class="job.oldResponseId!=job.response_id ? 'removing':''" )
+          td.wrapper-md(ui-sref='job.view({jobId: job.id})'): a(ui-sref='job.view({jobId: job.id})' ng-bind="job.owner_company")
+          td.wrapper-md(ui-sref='job.view({jobId: job.id})' ng-bind="job.role")
+          td.wrapper-md(ui-sref='job.view({jobId: job.id})' ng-bind="job.region")
+          td.wrapper-md(ng-bind="job.min_sal + ' - ' + job.max_sal")
+          td.wrapper-md(ng-bind="job.priority" class="text-{{color[job.priority]}}-dker")
+          td.wrapper-md(ng-bind="job.score")
+          td.wrapper-md(ng-bind="job.payment")
+          td.wrapper-md(ng-repeat="value in (JobsList.pageStatus == 'Accepted'? [2,3]:(JobsList.pageStatus == 'Hidden'?[1,3]:JobsList.pageStatus == 'Rejected'?[1,2]:[1,2,3]))" )
+            input.with-font(type="radio" id="radio_{{job.allocation_id}}_{{value}}" name="radio_{{job.allocation_id}}" ng-model="job.response_id"  ng-value="value" ng-change="JobsList.updateResponse(job)")
+            label(for="radio_{{job.allocation_id}}_{{value}}")
+      tfoot
+        tr
+          td
+            button.pull-right.btn.active.m-t-xs(ng-if="JobsList.ui.loading")
+              i.fa.fa-circle-o-notch.fa-spin
+              strong &nbsp;Loading
+            button.pull-right.btn.btn-primary.m-t-xs(ng-if="JobsList.ui.lazyLoad" ng-click="JobsList.loadJobs()")
+              i.fa.fa-plus-circle
+              strong &nbsp;Load More
+          td
+          td
+          td

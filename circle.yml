@@ -1,0 +1,16 @@
+general:
+  branches:
+    only:
+      - master # list of branches to build
+      - staging
+deployment:
+  production:
+    branch: master
+    commands:
+      - chmod +x deploy.sh
+      - ./deploy.sh
+  staging:
+    branch: staging
+    commands:
+      - chmod +x deploy-staging.sh
+      - ./deploy-staging.sh

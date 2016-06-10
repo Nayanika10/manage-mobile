@@ -1,0 +1,196 @@
+.hbox
+  directive-header(viewdata="ApplicantNew" buttons="{buckets:true,internals:true,interviews:false,references:true,share:true,view:true}" App="App")
+  .m-t-lg
+  div
+    div
+      .wrapper-md.bg-light.b-b
+        h1.m-n.font-thin.h3
+          span Upload CV for
+          span.font-bold(ng-show="ApplicantNew.job.client_name" ng-bind=" ' ' + ApplicantNew.job.client_name")
+          span.font-bold(ng-bind="' -  ' + ApplicantNew.job.role")
+          span.font-bold(ng-show="ApplicantNew.job.job_location" ng-bind=" ' - ' + ApplicantNew.job.job_location")
+        form.form-horizontal.wrapper-md( name="uploadCVForm")
+          .row
+            // Form Block
+            .col-md-7.col-sm-12.col-xs-12
+              // Form Items
+              .row
+                .col-md-6.col-sm-6.col-xs-12
+                  label.col-xs-12.input-group
+                    | Candidate Name
+                    span.text-danger *
+                    input.form.form-control(type='text' placeholder='eg. Candidate Name' ng-model='ApplicantNew.data.name' q-text-maxlength="60"  ng-pattern='/^[a-zA-Z ]*$/' q-pattern='[^a-zA-Z ]*' autofocus ucf_sentence_case required)
+              .line.line-dashed.b-b.line-lg.pull-in
+              .row
+                .col-md-6.col-sm-6.col-xs-12
+                  label.col-xs-12.input-group
+                    | Email Address
+                    span.text-danger *
+                    input.form.form-control(type='email' name="email" placeholder='eg. Email' ng-model='ApplicantNew.data.email_id' q-text-maxlength="60"  q-applicant-job-unique='email~{{ApplicantNew.job.id}}' ng-pattern="/^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/" ucf-lowercase required)
+                    .text-danger(ng-show='uploadCVForm.email.$dirty && uploadCVForm.email.$invalid')
+                      span(ng-show='uploadCVForm.email.$error.unique') with this email, Someone already applied.
+
+                .col-md-6.col-sm-6.col-xs-12
+                  label.col-xs-12.input-group
+                    | Mobile Number
+                    span.text-danger *
+                    input.form.form-control(type='text' name="number" placeholder='eg. Mobile Number' ng-model='ApplicantNew.data.number' q-applicant-job-unique='number~{{ApplicantNew.job.id}}' q-maxlength="14" ng-max="99999999999999" ng-pattern="/^[0-9]{10,14}$/" q-pattern="[^0-9]*" required)
+                    .text-danger(ng-show='uploadCVForm.number.$dirty && uploadCVForm.number.$invalid')
+                      span(ng-show='uploadCVForm.number.$error.unique') with this number, Someone already applied.
+              .line.line-dashed.b-b.line-lg.pull-in
+              .row
+                .col-md-6.col-sm-6.col-xs-12
+                  label.col-xs-12.input-group
+                    | Current Designation
+                    span.text-danger *
+                    input.form-control(type='text' name='designation' ng-model='ApplicantNew.Designations.model' q-text-maxlength="60" placeholder='Designation' uib-typeahead='designation.name for designation in ApplicantNew.Designations.get($viewValue)' typeahead-loading='ApplicantNew.Designations.loadingDesignations' typeahead-no-results='ApplicantNew.Designations.noResults' typeahead-on-select='ApplicantNew.Designations.select($item)' ng-blur="ApplicantNew.Designations.blur()" q-pattern='[^a-zA-Z ]*' typeahead-wait-ms="10" autocomplete="off"  ucf_sentence required)
+                    i.fa.fa-refresh.fa-spin(ng-show='ApplicantNew.Designations.loadingDesignations')
+                .col-md-6.col-sm-6.col-xs-12
+                  label.col-xs-12.input-group
+                    | Current Employer
+                    span.text-danger *
+                    input.form-control(type='text' ng-model='ApplicantNew.Employers.model' q-text-maxlength="60" placeholder='Current Employer' uib-typeahead='employer.name for employer in ApplicantNew.Employers.get($viewValue)' typeahead-loading='ApplicantNew.Employers.loadingEmployers' typeahead-no-results='ApplicantNew.Employers.noResults' typeahead-on-select='ApplicantNew.Employers.select($item)' ng-blur="ApplicantNew.Employers.blur()" q-pattern='[^a-zA-Z0-9 ]*' typeahead-wait-ms="10" autocomplete="off"  ucf_sentence required)
+                    i.fa.fa-refresh.fa-spin(ng-show='ApplicantNew.Employers.loadingEmployers')
+              .line.line-dashed.b-b.line-lg.pull-in
+              .row
+                .col-md-4.col-sm-5.col-xs-12
+                  label.col-xs-12.input-group
+                    | Current CTC(Lakh)
+                    span.text-danger *
+                    input.form.form-control(type='text' name="salary" placeholder='eg. 3.25' ng-model='ApplicantNew.data.salary' q-float-maxlength="6" max="999" required)
+
+                .col-md-5.col-sm-5.col-xs-12
+                  label.col-xs-12.input-group
+                    | Expected CTC(Lakh)
+                    span.text-danger *
+                    input.form.form-control(type='text' name="expected_ctc" placeholder='eg. 5.62' ng-model='ApplicantNew.data.expected_ctc' q-float-maxlength="6" max="365" required)
+              .line.line-dashed.b-b.line-lg.pull-in
+              .row
+                .col-md-5.col-sm-5.col-xs-12
+                  label.col-xs-12.input-group
+                    | Notice Period(in Days)
+                    span.text-danger *
+                    input.form.form-control(type='text' name="notice_period" placeholder='eg. 90' ng-model='ApplicantNew.data.notice_period' q-maxlength="3" max="999" required)
+                .col-md-5.col-sm-6.col-xs-12
+                  label.col-xs-12.input-group
+                    | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Candidate Total Experience
+                    span.text-danger *
+                    input(type="hidden" ng-model="ApplicantNew.data.total_exp" bound-model="(ApplicantNew.data.total_exp_y - 0) + ((ApplicantNew.data.total_exp_m? (ApplicantNew.data.total_exp_m / 100):0) -0) ")
+                    .col-md-6.col-sm-6.col-xs-12
+                      input.form-control(type='text' name="total_exp_y" placeholder='Years' ng-model='ApplicantNew.data.total_exp_y' q-maxlength="2" max="99" required)
+                    .col-md-6.col-sm-6.col-xs-12
+                      input.form-control(type='text' name="total_exp_m" placeholder='Months' ng-model='ApplicantNew.data.total_exp_m' q-maxlength="2" max="11" required)
+              .line.line-dashed.b-b.line-lg.pull-in
+              .row
+                .col-md-6.col-sm-6.col-xs-12
+                  label.col-xs-12.input-group
+                    | Highest Qualification
+                    span.text-danger *
+                    input.form-control(type='text' ng-model='ApplicantNew.Degrees.model' q-text-maxlength="60" placeholder='Degree' uib-typeahead='degree.name for degree in ApplicantNew.Degrees.get($viewValue)' typeahead-loading='ApplicantNew.Degrees.loadingDegrees' typeahead-no-results='ApplicantNew.Degrees.noResults' typeahead-on-select='ApplicantNew.Degrees.select($item)' ng-blur="ApplicantNew.Degrees.blur()" q-pattern='[^a-zA-Z ]*' typeahead-wait-ms="10" autocomplete="off" ucf_sentence required)
+                    i.fa.fa-refresh.fa-spin(ng-show='ApplicantNew.Degrees.loadingDegrees')
+                .col-md-6.col-sm-6.col-xs-12
+                  label.col-xs-12.input-group
+                    | Current Location
+                    span.text-danger *
+                    input.form-control(type='text' name="region" ng-model='ApplicantNew.Regions.model' q-text-maxlength="60" placeholder='Job Location' uib-typeahead='region.name for region in ApplicantNew.Regions.get($viewValue)' typeahead-loading='ApplicantNew.Regions.loadingRegions' typeahead-no-results='ApplicantNew.Regions.noResults' typeahead-on-select='ApplicantNew.Regions.select($item)' q-pattern='[^a-zA-Z ]*' typeahead-wait-ms="10" autocomplete="off" ucf_sentence required)
+                    i.fa.fa-refresh.fa-spin(ng-show='ApplicantNew.Regions.loadingRegions')
+                    div(ng-show='ApplicantNew.Regions.noResults')
+                      i.fa.fa-remove
+                      |  No Results Found
+
+              .line.line-dashed.b-b.line-lg.pull-in
+              .row
+                .col-md-12.col-sm-12.col-xs-12
+                  label.col-xs-12.input-group
+                    | Select CV
+                    span.text-danger *
+                    .btn-file-wrapper(ng-class="uploadCVForm.file.$touched && uploadCVForm.file.$invalid ? 'input-file-danger':''" drag-drop-toggle)
+                      .btn-file
+                        span(ng-show="(uploadCVForm.file.$touched && uploadCVForm.file.$valid) || ApplicantNew.data.file")
+                          span.text-muted(ng-bind="ApplicantNew.data.file.name")
+                        p.no-margin(ng-hide="(uploadCVForm.file.$touched && uploadCVForm.file.$valid) || ApplicantNew.data.file")
+                          span.text-bold Choose a file
+                          |  or Drag it here.
+                        span.file-support(ng-hide="(uploadCVForm.file.$touched && uploadCVForm.file.$valid) || ApplicantNew.data.file") Supported Formats: pdf, doc, docx, rtf, txt
+                        input.form-control(ngf-select='' type="file" ng-model='ApplicantNew.data.file' name='file' ngf-pattern="'.pdf,.doc,.docx,.rtf,.txt'"  ngf-max-size="10MB" ngf-max-files="1"  onclick="this.value = null" required)
+            .col-md-5.cv-preview
+              .header(ng-hide="uploadCVForm.$pristine") CV Preview
+              ul
+                li(ng-show="ApplicantNew.data.name")
+                  span.preview-head Candidate Name :
+                  span(ng-bind="ApplicantNew.data.name")
+                li(ng-show="ApplicantNew.data.email_id")
+                  span.preview-head Email :
+                  span(ng-bind="ApplicantNew.data.email_id")
+                li(ng-show="ApplicantNew.data.number")
+                  span.preview-head Mobile Number :
+                  span(ng-bind="ApplicantNew.data.number")
+                li(ng-show="ApplicantNew.Designations.model")
+                  span.preview-head Designation :
+                  span(ng-bind="ApplicantNew.Designations.model")
+                li(ng-show="ApplicantNew.Employers.model")
+                  span.preview-head Current Employer :
+                  span(ng-bind="ApplicantNew.Employers.model")
+                li(ng-show="ApplicantNew.data.salary")
+                  span.preview-head Current CTC :
+                  span(ng-bind="(ApplicantNew.data.salary-0)>1? ApplicantNew.data.salary+ ' Lakhs':ApplicantNew.data.salary+ ' Lakh'")
+                li(ng-show="ApplicantNew.data.expected_ctc")
+                  span.preview-head Expected CTC :
+                  span(ng-class="(ApplicantNew.data.expected_ctc <= ApplicantNew.job.max_sal )? 'text-success':'text-danger'" ng-bind="(ApplicantNew.data.expected_ctc-0)>1? ApplicantNew.data.expected_ctc+ ' Lakhs':ApplicantNew.data.expected_ctc+ ' Lakh'")
+                li(ng-show="ApplicantNew.data.notice_period")
+                  span.preview-head Notice Period :
+                  span(ng-bind="ApplicantNew.data.notice_period + ' Days'")
+                li(ng-show="ApplicantNew.data.total_exp_y || ApplicantNew.data.total_exp_m")
+                  span.preview-head Experience
+                  span(ng-bind="ApplicantNew.data.total_exp_y +(ApplicantNew.data.total_exp_y?' Year ':'') + ' '")
+                  span &nbsp;
+                  span(ng-bind=" ApplicantNew.data.total_exp_m + (ApplicantNew.data.total_exp_m?' Month ':'')")
+                  //span(ng-class="(ApplicantNew.data.total_exp >= ApplicantNew.job.min_exp && ApplicantNew.data.total_exp <= ApplicantNew.job.max_exp )? 'text-success':'text-danger'" ng-bind="ApplicantNew.data.total_exp + ' Years '")
+                li(ng-show="ApplicantNew.Degrees.model")
+                  span.preview-head Highest Qualification
+                  span(ng-bind="ApplicantNew.Degrees.model")
+                li(ng-show="ApplicantNew.Regions.model")
+                  span.preview-head Location
+                  span(ng-bind="ApplicantNew.Regions.model")
+                li(ng-show="ApplicantNew.data.file.name")
+                  span.preview-head CV File
+                  span(ng-bind="ApplicantNew.data.file.name")
+
+              .header.job-header(ng-show="ApplicantNew.job") Job Details
+              ul.job-list
+                li(ng-show="ApplicantNew.job.job_status")
+                  span.preview-head Job Status :
+                  span(ng-bind="ApplicantNew.job.job_status")
+                li(ng-show="ApplicantNew.job.role")
+                  span.preview-head Role :
+                  span(ng-class="uploadCVForm.designation.$valid ? 'q-touched':''")
+                    span(ng-bind="ApplicantNew.job.role")
+                    span( ng-show="ApplicantNew.job.job_nature" ng-bind="' - ' + ApplicantNew.job.job_nature")
+                li(ng-show="ApplicantNew.job.client_name")
+                  span.preview-head Company :
+                  span(ng-bind="ApplicantNew.job.client_name")
+                li(ng-show="ApplicantNew.job.job_location")
+                  span.preview-head Job Location :
+                  span(ng-class="uploadCVForm.region.$valid ? 'q-touched':''" ng-bind="ApplicantNew.job.job_location")
+                li(ng-show="ApplicantNew.job.vacancy")
+                  span.preview-head Vacancy :
+                  span(ng-bind="ApplicantNew.job.vacancy")
+                li(ng-show="ApplicantNew.job.min_sal || ApplicantNew.job.max_sal")
+                  span.preview-head Salary Range :
+                  span(ng-class="uploadCVForm.expected_ctc.$valid ? 'q-touched':''")
+                    span(ng-bind="ApplicantNew.job.max_sal? (ApplicantNew.job.min_sal? ApplicantNew.job.min_sal :''): (ApplicantNew.job.min_sal? ('Min '+ApplicantNew.job.min_sal+ ' '):'')")
+                    span(ng-show="ApplicantNew.job.min_sal && ApplicantNew.job.max_sal") &nbsp;to&nbsp;
+                    span(ng-bind="ApplicantNew.job.min_sal?(ApplicantNew.job.max_sal?( ApplicantNew.job.max_sal + ' Lakh'):''):(ApplicantNew.job.max_sal?( 'Max ' +ApplicantNew.job.max_sal + ' Lakh'):'')")
+                li(ng-show="ApplicantNew.job.min_exp || ApplicantNew.job.max_exp")
+                  span.preview-head Experience Range :
+                  span(ng-class="uploadCVForm.total_exp_y.$valid ? 'q-touched':''")
+                    span(ng-bind="ApplicantNew.job.max_exp? (ApplicantNew.job.min_exp? ApplicantNew.job.min_exp :''): (ApplicantNew.job.min_exp? ('Min '+ApplicantNew.job.min_exp+ ' Years'):'')")
+                    span(ng-show="ApplicantNew.job.min_exp && ApplicantNew.job.max_exp") &nbsp;to&nbsp;
+                    span(ng-bind="ApplicantNew.job.min_exp?(ApplicantNew.job.max_exp?( ' ' + ApplicantNew.job.max_exp + ' Years'):''):(ApplicantNew.job.max_exp?( 'Max ' +ApplicantNew.job.max_exp + ' Years'):'')")
+                li(ng-show="ApplicantNew.job.skills && ApplicantNew.job.skills.length")
+                  span.preview-head Skills :
+                  span(ng-bind="ApplicantNew.job.skills.join(', ')")
+    .col-md-8
+    .col-md-4.col-xs-12
+      button.btn.btn-success.pull-right.fa.fa-upload(type='submit' ng-click='ApplicantNew.create()' ng-disabled='uploadCVForm.$invalid') &nbsp;&nbsp;Upload Candidate
+      h4.pull-right.text-success.right-margin-20(ng-hide='uploadCVForm.$invalid') Ready to Submit

@@ -1,0 +1,90 @@
+$icon-font-path: "../bower_components/bootstrap-sass/assets/fonts/bootstrap/";
+//@import '../bower_components/bootstrap-sass-official/vendor/assets/stylesheets/bootstrap';
+$fa-font-path: "../bower_components/font-awesome/fonts";
+@import '../bower_components/font-awesome/scss/font-awesome';
+
+
+
+/**
+ * App-wide Styles
+ */
+
+.browserupgrade {
+  margin: 0.2em 0;
+  background: #ccc;
+  color: #000;
+  padding: 0.2em 0;
+}
+
+// Component styles are injected through grunt
+// injector
+@import 'directives/directive-header/directive-header.scss';
+@import 'ng-theme/main.scss';
+@import 'routes/access/access.scss';
+@import 'routes/advanced-search/advanced-search.scss';
+@import 'routes/applicants/applicants.scss';
+@import 'routes/calendar/calendar.scss';
+@import 'routes/dashboard/dashboard.scss';
+@import 'routes/jobs/applicants/new/new.scss';
+@import 'routes/jobs/jobs.scss';
+@import 'routes/jobs/list/list.scss';
+@import 'routes/jobs/references/view/view.scss';
+@import 'routes/login/login.scss';
+@import 'routes/references/references.scss';
+@import 'routes/scoreboard/scoreboard.scss';
+@import 'routes/search-results/search-results.scss';
+@import 'routes/search/search.scss';
+@import '../components/footer/footer.scss';
+@import '../components/modal/modal.scss';
+@import '../components/navigation-jobs/navigation-jobs.scss';
+// endinjector
+
+
+// Override: TODO: Seems some differences with bootstrap-sass of hire and this(partner).
+.btn-success:hover {
+  color: $brand-success;
+}
+
+.badge-bracket {
+  font-size: 12px;
+  color:#ddd;
+}
+.badge-bracket:empty{
+  display: none;
+}
+.badge-bracket:before {
+  content: "(";
+}
+
+.badge-bracket:after {
+  content: ")";
+}
+
+.no-drop {
+  cursor: no-drop;
+  cursor: not-allowed !important;
+}
+
+//.hbox {
+//  max-width: 1380px;
+//  margin: auto;
+//}
+
+.card-applicant {
+  box-shadow: 1px 1px 10px;
+}
+
+.app-aside-folded .navbar-collapse {
+  margin-left:145px ;
+}
+
+.thead {
+  background-color: #1C8B9F;
+  color: #fff;
+}
+
+@media (max-width:992px) {
+  .col-divider > div {
+    border-left: 2px solid transparent;
+  }
+}

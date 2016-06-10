@@ -1,0 +1,281 @@
+.hobx
+  .col-md-2
+    .wrapper-xs.bg-light.b-b(style='position:fixed;left:0;width:240px;height: 200%')
+
+          .dropdown
+            button.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown', style='width: 240px')
+              | Client
+              span.caret
+            ul.dropdown-menu
+              li
+                a(href='#') HTML
+          .dropdown
+            button.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown', style='width: 240px')
+              | Client EM
+              span.caret
+            ul.dropdown-menu
+              li
+                a(href='#') HTML
+          .dropdown
+            button.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown', style='width: 240px')
+              | Consultant
+              span.caret
+            ul.dropdown-menu
+              li
+                a(href='#') HTML
+          .dropdown
+            button.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown', style='width: 240px')
+              | Consultant EM
+              span.caret
+            ul.dropdown-menu
+              li
+                a(href='#') HTML
+          .dropdown
+            button.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown', style='width: 240px')
+              | Priority
+              span.caret
+            ul.dropdown-menu
+              li
+                a(href='#') HTML
+          .dropdown
+            button.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown', style='width: 240px')
+              | Status
+              span.caret
+            ul.dropdown-menu
+              li
+                a(href='#') HTML
+  .col-md-10
+    //.wrapper-xs.bg-light.b-b(style='position: fixed;width: 100%;background: #fff; z-index: 2;')
+    //  ul.nav.nav-pills.nav-sm
+    //    li: label.i-checks.m-t-xs.m-b-none.m-l-lg
+    //      input(type='checkbox' ng-click='JobsManage.setChecked(JobsManage.checkAll)' ng-model='JobsManage.checkAll')
+    //      i.m-r-none(ng-if='JobsManage.applicants.length > 0')
+    //    li(ng-repeat='bucket in JobsManage.buckets' ui-sref-active="active")
+    //      a(ui-sref='jobs-manage({bucket: bucket})') {{bucket}}
+
+
+
+    .wrapper-xs.bg-light.b-b(style='position: fixed; right:0 ;background: #fff;width: 81%;height: 8%; z-index: 2;')
+      .col-sm-4.no-padder
+        form.w-full.navbar-form.navbar-form-lg.navbar-left.ng-pristine.ng-valid(role='search')
+          .form-group.w-full
+            .input-group.w-full
+              input.form-control.input-sm.bg-light.no-border.rounded.padder.ng-pristine.ng-valid.ng-touched(type='text', ng-model='App.Applicants.searchText', uib-typeahead='applicant.name for applicant in App.Applicants.get($viewValue)', typeahead-on-select='App.Applicants.select($item)', placeholder='Client', aria-autocomplete='list', aria-expanded='false', aria-owns='typeahead-5-7754', style='')
+              ul#typeahead-5-7754.dropdown-menu.ng-isolate-scope.ng-hide(ng-show='isOpen() && !moveInProgress', ng-style="{top: position().top+'px', left: position().left+'px'}", style='display: block;;display: block;', role='listbox', aria-hidden='true', uib-typeahead-popup='', matches='matches', active='activeIdx', select='select(activeIdx)', move-in-progress='moveInProgress', query='query', position='position')
+                // ngRepeat: match in matches track by $index
+              span.input-group-btn
+                button.btn.btn-sm.bg-light.rounded(type='submit')
+                  i.fa.fa-search
+
+      .col-sm-4.no-padder
+        form.w-full.navbar-form.navbar-form-lg.navbar-left.ng-pristine.ng-valid(role='search')
+          .form-group.w-full
+            .input-group.w-full
+              input.form-control.input-sm.bg-light.no-border.rounded.padder.ng-pristine.ng-valid.ng-touched(type='text', ng-model='App.Applicants.searchText', uib-typeahead='applicant.name for applicant in App.Applicants.get($viewValue)', typeahead-on-select='App.Applicants.select($item)', placeholder='Consultant', aria-autocomplete='list', aria-expanded='false', aria-owns='typeahead-5-7754', style='')
+              ul#typeahead-5-7754.dropdown-menu.ng-isolate-scope.ng-hide(ng-show='isOpen() && !moveInProgress', ng-style="{top: position().top+'px', left: position().left+'px'}", style='display: block;;display: block;', role='listbox', aria-hidden='true', uib-typeahead-popup='', matches='matches', active='activeIdx', select='select(activeIdx)', move-in-progress='moveInProgress', query='query', position='position')
+                // ngRepeat: match in matches track by $index
+              span.input-group-btn
+                button.btn.btn-sm.bg-light.rounded(type='submit')
+                  i.fa.fa-search
+    .wrapper-md
+      .m-b-sm(style="height:1px;")
+        table.table.m-b-none.m-t-xl(before-bottom='Applicant.loadApplicants()')
+          thead
+            table.table
+              tr
+                th Candidate
+                th Score
+                th Client
+                th Position
+                th JD Rating
+                th Consultant
+                th(style='width:10%') Status
+
+    .wrapper-md
+
+              .panel.panel-default
+                .panel-heading
+                  label.i-checks.m-b-none
+                     input(type='checkbox' ng-model='applicant.checked')
+                     i
+                     a(ui-sref='applicants-view({applicantId: applicant.id})')
+                     strong.text-primary-lt  Nishit Singh
+
+
+                table.table
+
+                  tr
+                    td Nishit Singh
+                    td Demo
+                    td Demo
+                    td Demo
+                    td Demo
+                    td Demo
+                    td(style='width:10%') Demo
+
+
+                //.btn-group.pull-right.m-t-n-xs(uib-dropdown='' uib-keyboard-nav='' dropdown-append-to-body)
+                //  button.w-full.btn(class='btn-Demo Text' uib-dropdown-toggle='' ng-disabled='App.states[applicant.state_id].Actions.length===0' style='padding: 4px 8px;')
+                //    span Demo Text&nbsp;
+                //    span(ng-if='App.states[applicant.state_id].Actions.length>0').caret
+                //  ul.uib-dropdown-menu(role='menu' aria-labelledby='simple-btn-keyboard-nav')
+                //    li(role='menuitem' ng-repeat='state in App.states[applicant.state_id].Actions')
+                //      a(href='' ng-click='App.changeState(applicant, state.state_id)') Demo Text
+
+                //span.pull-right.padder(ng-if='applicant.interview_type && applicant.interview_time')
+                //  i.fa(class='text-Demo Text')
+                //  |  Demo Text
+
+              //.panel-body.pull-in.b-t.wrapper-xs
+              //  .col-xs-14.col-md-14.no-padder
+              //    .col-xs-2.text-ellipsis
+              //      i.fa
+              //      | Nishit Singh
+              //    .col-xs-2.text-ellipsis
+              //      i.fa
+              //      | Demo
+              //    .col-xs-1.text-ellipsis
+              //      i.fa
+              //      | Demo
+              //    .col-xs-2.text-ellipsis
+              //      i.fa
+              //      | Demo
+              //    .col-xs-2.text-ellipsis
+              //      i.fa
+              //      | Demo
+              //    .col-xs-2.text-ellipsis
+              //      i.fa
+              //      | Demo
+              //    .col-xs-1.text-ellipsis
+              //      i.fa
+              //      | Demo
+
+
+          //.col-xs-12.col-md-2.no-padder
+          //  .m-none.wrapper-sm.w-full.w-auto-xs
+          //    .m-b-sm.clearfix: span.pull-right.padder.m-t-xxs Demo Text
+          //    .panel-body.pull-in.m-r-n-sm.wrapper-xs.b-t
+          //      .clearfix
+          //        i.btn.pull-right.text-success-dker.m-t-xs.fa.fa-lg.fa-download(ng-click='App.downloadApplicant([applicant.id])')
+          //        .item.text-info.h1.pull-right.padder.b-l.b-r.b-light.font-thin(title='System generated alogrithmic Score')  Demo Text
+
+  //(before-bottom='AdvancedSearch.loadApplicants()')
+  //.wrapper-xs.bg-light.b-b(style='position: fixed;width: 15%;height: 8%;background: #fff; z-index: 2;')
+      .w.m-t-xl.nav-job
+        .bg-light.lt.w.m-t-xs(style='position: relative; height: 200%; width: 220px')
+          .dropdown
+            button.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown', style='width: 200px')
+              | Client
+              span.caret
+            ul.dropdown-menu
+              li
+                a(href='#') HTML
+          .dropdown
+            button.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown', style='width: 200px')
+              | Client EM
+              span.caret
+            ul.dropdown-menu
+              li
+                a(href='#') HTML
+          .dropdown
+            button.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown', style='width: 200px')
+              | Consultant
+              span.caret
+            ul.dropdown-menu
+              li
+                a(href='#') HTML
+
+
+
+          .dropdown
+            button.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown', style='width: 200px')
+              | Consultant EM
+              span.caret
+            ul.dropdown-menu
+              li
+                a(href='#') HTML
+
+
+
+          .dropdown
+            button.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown', style='width: 200px')
+              | Priority
+              span.caret
+            ul.dropdown-menu
+              li
+                a(href='#') HTML
+
+
+
+          .dropdown
+            button.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown', style='width: 200px')
+              | Status
+              span.caret
+            ul.dropdown-menu
+              li
+                a(href='#') HTML
+
+
+  //.wrapper-xs.bg-light.b-b(style='position: fixed; right:0 ;background: #fff;width: 80%;height: 8%; z-index: 2;')
+    .col-sm-4.no-padder
+      form.w-full.navbar-form.navbar-form-lg.navbar-left.ng-pristine.ng-valid(role='search')
+        .form-group.w-full
+          .input-group.w-full
+            input.form-control.input-sm.bg-light.no-border.rounded.padder.ng-pristine.ng-valid.ng-touched(type='text', ng-model='App.Applicants.searchText', uib-typeahead='applicant.name for applicant in App.Applicants.get($viewValue)', typeahead-on-select='App.Applicants.select($item)', placeholder='Client', aria-autocomplete='list', aria-expanded='false', aria-owns='typeahead-5-7754', style='')
+            ul#typeahead-5-7754.dropdown-menu.ng-isolate-scope.ng-hide(ng-show='isOpen() && !moveInProgress', ng-style="{top: position().top+'px', left: position().left+'px'}", style='display: block;;display: block;', role='listbox', aria-hidden='true', uib-typeahead-popup='', matches='matches', active='activeIdx', select='select(activeIdx)', move-in-progress='moveInProgress', query='query', position='position')
+              // ngRepeat: match in matches track by $index
+            span.input-group-btn
+              button.btn.btn-sm.bg-light.rounded(type='submit')
+                i.fa.fa-search
+
+    .col-sm-4.no-padder
+      form.w-full.navbar-form.navbar-form-lg.navbar-left.ng-pristine.ng-valid(role='search')
+        .form-group.w-full
+          .input-group.w-full
+            input.form-control.input-sm.bg-light.no-border.rounded.padder.ng-pristine.ng-valid.ng-touched(type='text', ng-model='App.Applicants.searchText', uib-typeahead='applicant.name for applicant in App.Applicants.get($viewValue)', typeahead-on-select='App.Applicants.select($item)', placeholder='Consultant', aria-autocomplete='list', aria-expanded='false', aria-owns='typeahead-5-7754', style='')
+            ul#typeahead-5-7754.dropdown-menu.ng-isolate-scope.ng-hide(ng-show='isOpen() && !moveInProgress', ng-style="{top: position().top+'px', left: position().left+'px'}", style='display: block;;display: block;', role='listbox', aria-hidden='true', uib-typeahead-popup='', matches='matches', active='activeIdx', select='select(activeIdx)', move-in-progress='moveInProgress', query='query', position='position')
+              // ngRepeat: match in matches track by $index
+            span.input-group-btn
+              button.btn.btn-sm.bg-light.rounded(type='submit')
+                i.fa.fa-search
+
+
+
+
+  //.wrapper-xs.bg-light.b-b(style='position: fixed; right:0 ;background: #fff;width: 50%;height: 20%; z-index: 2;')
+    .col.bg-white
+      .col-xs-12.col-md-10.no-padder
+        .tl-content.m-none.padder.w-full.w-auto-xs
+          .m-b-sm
+            label.i-checks.m-b-none
+              input.ng-pristine.ng-untouched.ng-valid(type='checkbox', ng-model='applicant.checked')
+              i
+            a(ui-sref='app.applicant.view({applicantId: applicant.id})', href='/app/applicant/44855')
+              strong.text-primary-lt.ng-binding  Naina
+            .btn-group.pull-right.m-t-n-xs.dropdown(uib-dropdown='', uib-keyboard-nav='', dropdown-append-to-body='dropdown-append-to-body')
+              button.w-full.btn.btn-danger(uib-dropdown-toggle='', ng-disabled='App.states[applicant.state_id].Actions.length===0', style='padding: 4px 8px', aria-haspopup='true', aria-expanded='false')
+                span.ng-binding Interview Backout 
+                // ngIf: App.states[applicant.state_id].Actions.length>0
+                span.caret.ng-scope(ng-if='App.states[applicant.state_id].Actions.length>0')
+                // end ngIf: App.states[applicant.state_id].Actions.length>0
+            // ngIf: applicant.interview_type && applicant.interview_time
+          .panel-body.pull-in.b-t.wrapper-xs
+            .col-xs-4.text-ellipsis.ng-binding
+              i.fa.fa-bookmark(style='margin:0 2px')
+              |   Assistant Vice President
+            .col-xs-4.text-ellipsis.ng-binding
+              i.fa.fa-graduation-cap
+              |  B Tech
+            .col-xs-4.text-ellipsis.ng-binding
+              i.fa.fa-inr
+              |  3 Lakhs
+            .col-xs-4.text-ellipsis.ng-binding
+              i.fa.fa-briefcase
+              |  Hindustan Aeronautics Limited
+            .col-xs-4.text-ellipsis.ng-binding
+              i.fa.fa-line-chart
+              |  3.03 Years
+            .col-xs-4.text-ellipsis.ng-binding
+              i.fa.fa-map-marker
+              |  Agartala
+

@@ -1,0 +1,203 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" ng-app="uiGenApp" ng-controller="AppController as App"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" ng-app="uiGenApp" ng-controller="AppController as App"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" ng-app="uiGenApp" ng-controller="AppController as App"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" ng-app="uiGenApp" ng-controller="AppController as App"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <title ng-bind="App.Page.title()"> </title>
+    <meta name="description" content="dashboard, recruiter, client">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css(client) app/vendor.css -->
+      <!-- bower:css -->
+      <link rel="stylesheet" href="bower_components/animate.css/animate.css" />
+      <link rel="stylesheet" href="bower_components/angular-bootstrap-calendar/dist/css/angular-bootstrap-calendar.css" />
+      <link rel="stylesheet" href="bower_components/angular-chart.js/dist/angular-chart.css" />
+      <link rel="stylesheet" href="bower_components/angular-loading-bar/build/loading-bar.css" />
+      <link rel="stylesheet" href="bower_components/angular-scrollable-table/scrollable-table.css" />
+      <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css({.tmp,client}) app/app.css -->
+      <link rel="stylesheet" href="app/app.css">
+      <!-- injector:css -->
+      <link rel="stylesheet" href="app/css/source-sans-pro.css">
+      <!-- endinjector -->
+    <!-- endbuild -->
+    <!--<ul class="nav nav-tabs" role="tablist">-->
+      <!--<li class="active"><a href="#home" role="tab" data-toggle="tab">Home</a></li>-->
+      <!--<li><a href="#profile" role="tab" data-toggle="tab">Profile</a></li>-->
+
+    <!--</ul>-->
+  </head>
+  <body>
+    <!--[if lt IE 7]>
+      <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <!-- Add your site or application content here -->
+    <div id="app" ng-class="{
+    'app-header-fixed':true,
+    'app-aside-fixed':true,
+    'app-aside-folded':App.app.settings.asideFolded,
+    'app-aside-dock':App.app.settings.asideDock,
+    'container':App.app.settings.container      }" class="app">
+      <!--<header>-->
+        <navbar ng-show="App.OAuth.isAuthenticated()" class="app-header navbar"></navbar> <!--<div ng-include="'html/blocks/header.html'" class="app-header navbar"></div>-->
+      <!--</header>-->
+      <aside ng-show="App.OAuth.isAuthenticated()"  ng-class="{    'off-screen': App.app.settings.offScreen,  }" class="app-aside hidden-xs bg-gd-dk {{App.app.settings.asideColor}}"></aside>
+      <content>
+        <div class="app-content">
+          <div ui-butterbar=""></div>
+          <a href="" ui-toggle-class="off-screen" data-target=".app-aside" class="off-screen-toggle hide"></a>
+          <div class="app-content-body">
+            <div class="hbox">
+
+              <div ng-if="App.showNavJobs()" class="col w">
+                <!--<div class="wrapper b-b bg">-->
+                  <!--<a ui-sref="app.mail.compose" class="btn btn-sm btn-danger w-xs font-bold" href="#/app/mail/compose">Manage JD</a>-->
+                <!--</div>-->
+                <navigation-jobs></navigation-jobs>
+              </div>
+              <div ui-view class="col"></div>
+            </div>
+          </div>
+      </div>
+      </content>
+    </div>
+    <!--<div ng-include="'html/blocks/aside.html'" ng-class="{    'off-screen': App.app.settings.offScreen,  }" class="app-aside hidden-xs {{App.app.settings.asideColor}}"></div>-->
+
+    <!--<navbar></navbar>-->
+    <!--<div ui-view=""></div>-->
+    <!--<footer></footer>-->
+
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-XXXXX-X');
+      ga('send', 'pageview');
+    </script>
+
+    <!--<script src="cordova.js"></script>-->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+    <!--[if lt IE 9]>
+    <script src="bower_components/es5-shim/es5-shim.js"></script>
+    <script src="bower_components/json3/lib/json3.min.js"></script>
+    <![endif]-->
+    <!-- build:js({client,node_modules}) app/vendor.js -->
+      <!-- bower:js -->
+      <script src="bower_components/jquery/dist/jquery.js"></script>
+      <script src="bower_components/angular/angular.js"></script>
+      <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+      <script src="bower_components/angular-http-auth/src/http-auth-interceptor.js"></script>
+      <script src="bower_components/angular-animate/angular-animate.js"></script>
+      <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+      <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+      <script src="bower_components/moment/moment.js"></script>
+      <script src="bower_components/angular-bootstrap-calendar/dist/js/angular-bootstrap-calendar-tpls.js"></script>
+      <script src="bower_components/Chart.js/Chart.js"></script>
+      <script src="bower_components/angular-chart.js/dist/angular-chart.js"></script>
+      <script src="bower_components/lodash/lodash.js"></script>
+      <script src="bower_components/restangular/dist/restangular.js"></script>
+      <script src="bower_components/ng-file-upload/ng-file-upload.js"></script>
+      <script src="bower_components/angular-loading-bar/build/loading-bar.js"></script>
+      <script src="bower_components/jquery.easy-pie-chart/dist/angular.easypiechart.min.js"></script>
+      <script src="bower_components/angular-scrollable-table/angular-scrollable-table.js"></script>
+      <script src="bower_components/angularjs-dropdown-multiselect/src/angularjs-dropdown-multiselect.js"></script>
+      <script src="bower_components/query-string/query-string.js"></script>
+      <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:js(.tmp) app/app.js -->
+      <script src="app/app.js"></script>
+      <!-- injector:js -->
+      <script src="components/util/util.module.js"></script>
+      <script src="app/routes/jobs/applicants/applicants.js"></script>
+      <script src="app/core/qui.components/before.bottom.js"></script>
+      <script src="app/core/qui.components/scroll.to.bottom.js"></script>
+      <script src="app/core/qui.core/constants/auth-events.js"></script>
+      <script src="app/core/qui.core/constants/currency.js"></script>
+      <script src="app/core/qui.core/services/auth.interceptor.js"></script>
+      <script src="app/core/qui.core/services/auth.js"></script>
+      <script src="app/core/qui.core/services/moment.js"></script>
+      <script src="app/core/qui.core/services/page.js"></script>
+      <script src="app/core/qui.core/services/session.js"></script>
+      <script src="app/core/qui.core/services/user.js"></script>
+      <script src="app/directives/add-follower/add-follower.controller.js"></script>
+      <script src="app/directives/change-state/change-state.controller.js"></script>
+      <script src="app/directives/directive-header/directive-header.directive.js"></script>
+      <script src="app/directives/download-resume/download-resume.controller.js"></script>
+      <script src="app/directives/logout/logout.controller.js"></script>
+      <script src="app/directives/social-share/social-share.controller.js"></script>
+      <script src="app/directives/text-inputs/text-inputs.directive.js"></script>
+      <script src="app/event.js"></script>
+      <script src="app/factories/Poller/Poller.service.js"></script>
+      <script src="app/factories/QResolve/QResolve.service.js"></script>
+      <script src="app/factories/QuarcService/QuarcService.service.js"></script>
+      <script src="app/factories/applicantsFactory/applicantsFactory.service.js"></script>
+      <script src="app/filters/common/common.fitler.js"></script>
+      <script src="app/javascript.js"></script>
+      <script src="app/routes/access/access.controller.js"></script>
+      <script src="app/routes/access/access.js"></script>
+      <script src="app/routes/access/oauth/oauth.controller.js"></script>
+      <script src="app/routes/advanced-search/advanced-search.controller.js"></script>
+      <script src="app/routes/advanced-search/advanced-search.js"></script>
+      <script src="app/routes/applicants/applicants.js"></script>
+      <script src="app/routes/applicants/comment/comment.controller.js"></script>
+      <script src="app/routes/applicants/list/list.controller.js"></script>
+      <script src="app/routes/applicants/view/view.controller.js"></script>
+      <script src="app/routes/calendar/calendar.controller.js"></script>
+      <script src="app/routes/calendar/calendar.js"></script>
+      <script src="app/routes/dashboard/dashboard.controller.js"></script>
+      <script src="app/routes/dashboard/dashboard.js"></script>
+      <script src="app/app.controller.js"></script>
+      <script src="app/routes/jobs/applicants/list/list.controller.js"></script>
+      <script src="app/routes/jobs/applicants/new/new.controller.js"></script>
+      <script src="app/routes/jobs/comment/comment.controller.js"></script>
+      <script src="app/routes/jobs/interviews/interviews.controller.js"></script>
+      <script src="app/routes/jobs/interviews/interviews.js"></script>
+      <script src="app/routes/jobs/interviews/list/list.controller.js"></script>
+      <script src="app/routes/jobs/jobs.controller.js"></script>
+      <script src="app/routes/jobs/jobs.js"></script>
+      <script src="app/routes/jobs/list/list.controller.js"></script>
+      <script src="app/routes/jobs/new/new.controller.js"></script>
+      <script src="app/routes/jobs/references/list/list.controller.js"></script>
+      <script src="app/routes/jobs/references/references.js"></script>
+      <script src="app/routes/jobs/references/view/view.controller.js"></script>
+      <script src="app/routes/jobs/view/view.controller.js"></script>
+      <script src="app/routes/login/login.controller.js"></script>
+      <script src="app/routes/login/login.js"></script>
+      <script src="app/routes/references/list/list.controller.js"></script>
+      <script src="app/routes/references/references.controller.js"></script>
+      <script src="app/routes/references/references.js"></script>
+      <script src="app/routes/scoreboard/scoreboard.controller.js"></script>
+      <script src="app/routes/scoreboard/scoreboard.js"></script>
+      <script src="app/routes/search-results/search-results.controller.js"></script>
+      <script src="app/routes/search-results/search-results.js"></script>
+      <script src="app/routes/search/search.controller.js"></script>
+      <script src="app/routes/search/search.js"></script>
+      <script src="app/urls.constant.js"></script>
+      <script src="components/aside/aside.controller.js"></script>
+      <script src="components/aside/aside.directive.js"></script>
+      <script src="components/footer/footer.directive.js"></script>
+      <script src="components/modal/modal.service.js"></script>
+      <script src="components/navbar/navbar.controller.js"></script>
+      <script src="components/navbar/navbar.directive.js"></script>
+      <script src="components/navigation-jobs/navigation-jobs.controller.js"></script>
+      <script src="components/navigation-jobs/navigation-jobs.directive.js"></script>
+      <script src="components/navigation/navigation.controller.js"></script>
+      <script src="components/navigation/navigation.directive.js"></script>
+      <script src="app/app.constant.js"></script>
+      <script src="components/util/util.service.js"></script>
+      <!-- endinjector -->
+    <!-- endbuild -->
+  </body>
+</html>

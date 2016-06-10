@@ -1,0 +1,589 @@
+form.form-horizontal.wrapper-md#search( name="uploadCVForm")
+  .panel.panel-primary.no-border
+    .panel-heading.font-thin.h4
+      | Manage Search
+    .panel-body
+      .row
+        // Form Block
+        .col-md-7.col-sm-12.col-xs-12
+          .row
+            .col-md-8.col-sm-10.col-xs-12
+              label.col-xs-12.input-group
+                | Status
+                span.text-danger *
+                div.form-control(style="height:initial")
+                  span.b-a.b-info.text-info-dker.m-r-xs(ng-repeat='skill in Search.data.States' ng-show='skill.isRequired')
+                    span.wrapper-xs {{skill.name}}
+                    a.text-info-lt.font-bold(ng-click='Search.data.States.splice($index,1)'): span.fa.fa-1x ×&nbsp;
+                  span
+                    input(style="width:90px;border-color:transparent;z-index: 1;" type='text' ng-model='Search.States.model' placeholder='Enter Status' uib-typeahead='industry.name for industry in Search.States.get($viewValue)' typeahead-loading='Search.States.loadingClients' typeahead-no-results='Search.States.noResults' typeahead-on-select='Search.States.select($item)')
+                .col-md-4.col-sm-6.col-xs-12
+          .line.line-dashed.b-b.line-lg.pull-in
+          .row
+            .col-md-4.col-sm-6.col-xs-12
+              label.col-xs-12.input-group
+                | Client
+                span.text-danger *
+                div.form-control(style="height:initial;")
+                  span.b-a.b-info.text-info-dker.m-r-xs(ng-repeat='skill in Search.data.Clients' ng-show='skill.isRequired')
+                    span.wrapper-xs {{skill.name}}
+                    a.text-info-lt.font-bold(ng-click='Search.data.Clients.splice($index,1)'): span.fa.fa-1x ×&nbsp;
+                  span
+                    input(style="width:90px;border-color:transparent;z-index: 1;" type='text' ng-model='Search.Clients.model' placeholder='Enter Client' uib-typeahead='industry.name for industry in Search.Clients.get($viewValue)' typeahead-loading='Search.Clients.loadingClients' typeahead-no-results='Search.Clients.noResults' typeahead-on-select='Search.Clients.select($item)')
+            .col-md-4.col-sm-6.col-xs-12
+              label.col-xs-12.input-group
+                | Client EM
+                span.text-danger *
+                div.form-control(style="height:initial;")
+                  span.b-a.b-info.text-info-dker.m-r-xs(ng-repeat='skill in Search.data.ClientEMs' ng-show='skill.isRequired')
+                    span.wrapper-xs {{skill.name}}
+                    a.text-info-lt.font-bold(ng-click='Search.data.ClientEMs.splice($index,1)'): span.fa.fa-1x ×&nbsp;
+                  span
+                    input(style="width:120px;border-color:transparent;z-index: 1;" type='text' ng-model='Search.ClientEMs.model' placeholder='Enter Client EM' uib-typeahead='industry.name for industry in Search.ClientEMs.get($viewValue)' typeahead-loading='Search.ClientEMs.loadingClients' typeahead-no-results='Search.ClientEMs.noResults' typeahead-on-select='Search.ClientEMs.select($item)')
+
+          .row
+            .col-md-4.col-sm-6.col-xs-12
+              label.col-xs-12.input-group
+                | Consultant
+                span.text-danger *
+                div.form-control(style="height:initial;")
+                  span.b-a.b-info.text-info-dker.m-r-xs(ng-repeat='skill in Search.data.Consultants' ng-show='skill.isRequired')
+                    span.wrapper-xs {{skill.name}}
+                    a.text-info-lt.font-bold(ng-click='Search.data.Consultants.splice($index,1)'): span.fa.fa-1x ×&nbsp;
+                  span
+                    input(style="width:120px;border-color:transparent;z-index: 1;" type='text' ng-model='Search.Consultants.model' placeholder='Enter Consultant' uib-typeahead='industry.name for industry in Search.Consultants.get($viewValue)' typeahead-loading='Search.Consultants.loadingClients' typeahead-no-results='Search.Consultants.noResults' typeahead-on-select='Search.Consultants.select($item)')
+            .col-md-4.col-sm-6.col-xs-12
+              label.col-xs-12.input-group
+                | Consultant EM
+                span.text-danger *
+                div.form-control(style="height:initial;")
+                  span.b-a.b-info.text-info-dker.m-r-xs(ng-repeat='skill in Search.data.ConsultantEMs' ng-show='skill.isRequired')
+                    span.wrapper-xs {{skill.name}}
+                    a.text-info-lt.font-bold(ng-click='Search.data.ConsultantEMs.splice($index,1)'): span.fa.fa-1x ×&nbsp;
+                  span
+                    input(style="width:150px;border-color:transparent;z-index: 1;" type='text' ng-model='Search.ConsultantEMs.model' placeholder='Enter Consultant EM' uib-typeahead='industry.name for industry in Search.ConsultantEMs.get($viewValue)' typeahead-loading='Search.ConsultantEMs.loadingClients' typeahead-no-results='Search.ConsultantEMs.noResults' typeahead-on-select='Search.ConsultantEMs.select($item)')
+          .line.line-dashed.b-b.line-lg.pull-in
+          .row
+            .col-md-4.col-sm-4.col-xs-12
+              label.col-xs-12.input-group
+                | Position
+                span.text-danger *
+                div.form-control(style="height:initial;")
+                  span.b-a.b-info.text-info-dker.m-r-xs(ng-repeat='skill in Search.data.Positions' ng-show='skill.isRequired')
+                    span.wrapper-xs {{skill.name}}
+                    a.text-info-lt.font-bold(ng-click='Search.data.Positions.splice($index,1)'): span.fa.fa-1x ×&nbsp;
+                  span
+                    input(
+                    style="width:90px;border-color:transparent;z-index: 1;"
+                    type='text'
+                    typeahead-focus
+                    ng-model='Search.Positions.model'
+                    placeholder='Enter Position'
+                    uib-typeahead='industry.name for industry in Search.Positions.get($viewValue)'
+                    typeahead-loading='Search.Positions.loadingClients'
+                    typeahead-no-results='Search.Positions.noResults'
+                    typeahead-on-select='Search.Positions.select($item,$model,$label,$event)' )
+
+            .col-md-4.col-sm-4.col-xs-12
+              label.col-xs-12.input-group
+                | Location
+                span.text-danger *
+                div.form-control(style="height:initial;")
+                  span.b-a.b-info.text-info-dker.m-r-xs(ng-repeat='skill in Search.data.Regions' ng-show='skill.isRequired')
+                    span.wrapper-xs {{skill.name}}
+                    a.text-info-lt.font-bold(ng-click='Search.data.Regions.splice($index,1)'): span.fa.fa-1x ×&nbsp;
+                  span
+                    input(style="width:140px;border-color:transparent;z-index: 1;" type='text' ng-model='Search.Regions.model' placeholder='Enter Location' uib-typeahead='industry.alias for industry in Search.Regions.get($viewValue)' typeahead-loading='Search.Regions.loadingClients' typeahead-no-results='Search.Regions.noResults' typeahead-on-select='Search.Regions.select($item)')
+
+          .line.line-dashed.b-b.line-lg.pull-in
+          .row
+            .col-md-4.col-sm-4.col-xs-12
+              label.col-xs-12.input-group
+                | Create On From
+                span.text-danger *
+                  p.input-group
+                    input.form.form-control(type='text' uib-datepicker-popup='dd-MMMM-yyyy' ng-model='Search.UploadFrom' ng-change='Search.setScheduledOn()' is-open='Search.ui.scheduledOn' close-text='Close' ng-click='Search.ui.scheduledOn = true' min-date='Search.today')
+
+            .col-md-4.col-sm-4.col-xs-12
+              label.col-xs-12.input-group
+                | Create From To
+                span.text-danger *
+                  p.input-group
+                    input.form.form-control(type='text' name="two" uib-datepicker-popup='dd-MMMM-yyyy' ng-model='Search.UploadTo' ng-change='Search.setScheduledOnUploadTo()' is-open='Search.ui.scheduledOnUploadTo' close-text='Close' ng-click='Search.ui.scheduledOnUploadTo = true' min-date='Search.today')
+
+          .line.line-dashed.b-b.line-lg.pull-in
+          .row
+            .col-md-4.col-sm-4.col-xs-12
+              label.col-xs-12.input-group
+                | Interview Date
+                span.text-danger *
+                  p.input-group
+                    input.form.form-control(type='text' name="one" uib-datepicker-popup='dd-MMMM-yyyy' ng-model='Search.myDate' ng-change='Search.setScheduledOnmyDate()' is-open='Search.ui.scheduledOnmyDate' close-text='Close' ng-click='Search.ui.scheduledOnmyDate = true' min-date='Search.today')
+
+            .col-md-2.col-sm-4.col-xs-12
+              label.col-xs-12.input-group
+                | Priority
+                span.text-danger *
+                  div(ng-dropdown-multiselect='x()', options='Search.jobstatus', selected-model='Search.jobmodel')
+            .col-md-4.col-sm-4.col-xs-12
+              label.col-xs-12.input-group
+                | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Please Enter Candidate CV Score
+                span.text-danger *
+                .col-md-6.col-sm-6.col-xs-12
+                  input.form-control(type='text' name="cvfrom" placeholder='From' ng-model='Search.fromscore')
+                .col-md-6.col-sm-6.col-xs-12
+                  input.form-control(type='text' name="cvto" placeholder='To' ng-model='Search.toscore')
+          .line.line-dashed.b-b.line-lg.pull-in
+          .row
+            .col-md-4.col-sm-6.col-xs-12
+              label.col-xs-12.input-group
+                | Job Rating
+                span.text-danger *
+                  select#membertype.form-control(name='membertype', ng-model='Search.jobrating')
+                    option(value='') -- Select Rating For --
+                    option(value='consultant') Consultant
+                    option(value='client') Client
+                    option(value='Screening') Screening
+                .form-group(ng-show="Search.jobrating == 'consultant'")
+            .col-md-5.col-sm-6.col-xs-12
+              label.col-xs-12.input-group(ng-show="Search.jobrating == 'consultant'")
+                | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Please Enter value of Consultant Job Rating
+                span.text-danger *
+
+                .col-md-6.col-sm-6.col-xs-12
+                  input.form-control(type='text' name="consultantFrom" placeholder='From' ng-model='Search.fromsearch')
+                .col-md-6.col-sm-6.col-xs-12
+                  input.form-control(type='text' name="consultantTo" placeholder='To' ng-model='Search.tosearch')
+                .form-group(ng-show="Search.jobrating == 'client'")
+            .col-md-5.col-sm-6.col-xs-12
+              label.col-xs-12.input-group(ng-show="Search.jobrating == 'client'")
+                | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Please Enter value of Client Job Rating
+                span.text-danger *
+
+                .col-md-6.col-sm-6.col-xs-12
+                  input.form-control(type='text' name="clientFrom" placeholder='From' ng-model='Search.fromsearch1')
+                .col-md-6.col-sm-6.col-xs-12
+                  input.form-control(type='text' name="clientTo" placeholder='To' ng-model='Search.tosearch1')
+                .form-group(ng-show="Search.jobrating == 'Screening'")
+            .col-md-5.col-sm-6.col-xs-12
+              label.col-xs-12.input-group(ng-show="Search.jobrating == 'Screening'")
+                | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Please Enter value of Screening Job Rating
+                span.text-danger *
+
+                .col-md-6.col-sm-6.col-xs-12
+                  input.form-control(type='text' name="ScreeningFrom" placeholder='From' ng-model='Search.fromsearch2')
+                .col-md-6.col-sm-6.col-xs-12
+                  input.form-control(type='text' name="ScreeningTo" placeholder='To' ng-model='Search.tosearch2')
+          //.line.line-dashed.b-b.line-lg.pull-in
+
+          //.row
+          //  .col-md-8.col-sm-10.col-xs-12
+          //    label.col-xs-12.input-group
+          //      | Save your Preset
+          //      span.text-danger
+          //      div.form-control(style="height:initial;")
+          //        span.b-a.b-info.text-info-dker.m-r-xs(ng-repeat='skill in Search.data.reset' ng-show='skill.isRequired')
+          //          span.wrapper-xs {{skill.name}}
+          //          a.text-info-lt.font-bold(ng-click='Search.reset.Clients.splice($index,1)'): span.fa.fa-1x ×&nbsp;
+          //        span
+          //          input(style="width:90px;border-color:transparent;z-index: 1;" type='text' ng-model='Search.preset.model' placeholder='Enter Preset')
+
+        //.col-md-5.cv-preview
+          .header(ng-hide="uploadCVForm.$pristine") Search Preview
+          ul
+            li
+              li Status :
+              span(style='font-weight: bold;' ng-repeat="region in Search.data.States " ng-bind="$last ? region.name : region.name + ' |'")
+          ul
+            li
+              li Client :
+            span(style='font-weight: bold;' ng-repeat="client in Search.data.Clients " ng-bind="$last ? client.name : client.name + ' |'")
+          ul
+            li
+              li Client EM :
+            span(style='font-weight: bold;' ng-repeat="clientem in Search.data.ClientEMs " ng-bind="$last ? clientem.name : clientem.name + ' |'")
+          ul
+            li
+              li Consultant :
+            span(style='font-weight: bold;' ng-repeat="consultant in Search.data.Consultants " ng-bind="$last ? consultant.name : consultant.name + ' |'")
+          ul
+            li
+              li Consultant EM :
+            span(style='font-weight: bold;' ng-repeat="consultantem in Search.data.ConsultantEMs " ng-bind="$last ? consultantem.name : consultantem.name + ' |'")
+          ul
+            li
+              li Position :
+            span(style='font-weight: bold;' ng-repeat="position in Search.data.Positions " ng-bind="$last ? position.role : position.role + ' |'")
+          ul
+            li
+              li Regions :
+            span(style='font-weight: bold;' ng-repeat="region in Search.data.Regions " ng-bind="$last ? region.name : region.name + ' |'")
+          ul
+            li
+              li industry :
+            span(style='font-weight: bold;' ng-repeat="industry in Search.data.industries " ng-bind="$last ? industry.name : industry.name + ' |'")
+      .col-md-10
+        .col-md-12.col-xs-8
+          button.btn.btn-success.pull-right(type='submit' ng-click='Search.search.get()') Search
+
+
+//-Dashboard
+//div
+  //.wrapper-xs.bg-light.b-b
+  //  .m-l-md.font-thin.h3 Add New Candidate
+  form.form-horizontal.col-lg-10.col-lg-offset-1.wrapper-md( name="searchForm")
+    .panel.panel-primary.no-border
+      .panel-heading.font-thin.h4
+        | Set Presets
+      .panel-body
+        div(style="margin:auto;width:80%;")
+          .row
+            .col-md-12.col-sm-4
+              .panel.panel-default
+                .panel-body
+                  .col-md-12.no-padder
+                    label.col-xs-12.col-sm-11.input-group
+                      | Client
+                    .col-xs-11.no-padder
+                      .col-xs-12.no-padder
+                        span.b-a.b-info.text-info-dker.m-r-xs(ng-repeat='skill in Search.data.Clients' ng-show='skill.isRequired')
+                          span.wrapper-xs {{skill.name}}
+                          a.text-info-lt.font-bold(ng-click='Search.data.Clients.splice($index,1)'): span.fa.fa-1x ×&nbsp;
+                      .col-xs-6.no-padder
+                        span.b-a.b-info.text-info-dker.m-r-xs(ng-repeat='skill in Search.data.Clients' ng-show='!skill.isRequired')
+                          span.wrapper-xs {{skill.name}}
+                          a.text-info-lt.font-bold(ng-click='Search.data.Clients.splice($index,1)'): span.fa.fa-1x ×&nbsp;
+                    .col-xs-12.no-padder
+                      .col-xs-9.no-padder.input-group
+                        input.form-control(type='text' ng-model='Search.Clients.modelRequired' placeholder='Required Clients' uib-typeahead='industry.name for industry in Search.Clients.get($viewValue)' typeahead-loading='Search.Clients.loadingClients' typeahead-no-results='Search.Clients.noRequiredResults' typeahead-on-select='Search.Clients.selectRequired($item)')
+                        span.input-group-btn
+
+                      div(ng-show='Search.Clients.noRequiredResults')
+                        i.fa.fa-remove
+                        |  No Results Found
+
+
+          .row
+            .col-md-12.col-sm-4
+              .panel.panel-default
+                .panel-body
+                  .col-md-6.col-sm-3.no-padder
+                    label.col-xs-11.input-group
+                      | Status
+                    .col-xs-11.no-padder
+                      .col-xs-12.no-padder
+                        span.b-a.b-info.text-info-dker.m-r-xs(ng-repeat='skill in Search.data.States' ng-show='skill.isRequired')
+                          span.wrapper-xs {{skill.name}}
+                          a.text-info-lt.font-bold(ng-click='Search.data.States.splice($index,1)'): span.fa.fa-1x ×&nbsp;
+                      .col-xs-6.no-padder
+                        span.b-a.b-info.text-info-dker.m-r-xs(ng-repeat='skill in Search.data.States' ng-show='!skill.isRequired')
+                          span.wrapper-xs {{skill.name}}
+                          a.text-info-lt.font-bold(ng-click='Search.data.States.splice($index,1)'): span.fa.fa-1x ×&nbsp;
+                    .col-xs-12.no-padder
+                      .col-xs-9.no-padder.input-group
+                        input.form-control(type='text' ng-model='Search.States.modelRequired' placeholder='Required state' uib-typeahead='industry.name for industry in Search.States.get($viewValue)' typeahead-loading='Search.States.loadingClients' typeahead-no-results='Search.States.noRequiredResults' typeahead-on-select='Search.States.selectRequired($item)')
+                        span.input-group-btn
+
+                      div(ng-show='Search.States.noRequiredResults')
+                        i.fa.fa-remove
+                        |  No Results Found
+
+                  .col-md-6.col-sm-3.no-padder
+                    label.col-xs-11.input-group
+                      | Region
+                    //////
+                    .col-xs-12.no-padder
+                      .col-xs-9.no-padder.input-group
+                        div.form-control
+                          span.b-a.b-info.text-info-dker.m-r-xs(ng-repeat='skill in Search.data.Regions' ng-show='skill.isRequired')
+                            span.wrapper-xs {{skill.name}}
+                            a.text-info-lt.font-bold(ng-click='Search.data.Regions.splice($index,1)'): span.fa.fa-1x ×&nbsp;
+                          span
+                            input(style="width:60px;border-color:transparent;z-index: 1;" type='text' ng-model='Search.Regions.modelRequired' placeholder='Required Region' uib-typeahead='industry.name for industry in Search.Regions.get($viewValue)' typeahead-loading='Search.Regions.loadingClients' typeahead-no-results='Search.Regions.noRequiredResults' typeahead-on-select='Search.Regions.selectRequired($item)')
+                        span.input-group-btn
+
+                      div(ng-show='Search.Regions.noRequiredResults')
+                        i.fa.fa-remove
+                        |  No Results Found
+
+                  .col-md-6.col-sm-3.no-padder
+                    label.col-xs-11.input-group
+                      | Industry
+                    .col-xs-11.no-padder
+                      .col-xs-12.no-padder
+                        span.b-a.b-info.text-info-dker.m-r-xs(ng-repeat='skill in Search.data.industries' ng-show='skill.isRequired')
+                          span.wrapper-xs {{skill.name}}
+                          a.text-info-lt.font-bold(ng-click='Search.data.industries.splice($index,1)'): span.fa.fa-1x ×&nbsp;
+                      .col-xs-6.no-padder
+                        span.b-a.b-info.text-info-dker.m-r-xs(ng-repeat='skill in Search.data.industries' ng-show='!skill.isRequired')
+                          span.wrapper-xs {{skill.name}}
+                          a.text-info-lt.font-bold(ng-click='Search.data.industries.splice($index,1)'): span.fa.fa-1x ×&nbsp;
+                    .col-xs-12.no-padder
+                      .col-xs-9.no-padder.input-group
+                        input.form-control(style='z-index: 1;' type='text' ng-model='Search.industries.modelRequired' placeholder='Required Industry' uib-typeahead='industry.name for industry in Search.industries.get($viewValue)' typeahead-loading='Search.industries.loadingClients' typeahead-no-results='Search.industries.noRequiredResults' typeahead-on-select='Search.industries.selectRequired($item)')
+                        span.input-group-btn
+
+                      div(ng-show='Search.industries.noRequiredResults')
+                        i.fa.fa-remove
+                        |  No Results Found
+
+                  .col-md-6.col-sm-3.no-padder
+                    label.col-xs-11.input-group
+                      | Consultant
+                    .col-xs-11.no-padder
+                      .col-xs-12.no-padder
+                        span.b-a.b-info.text-info-dker.m-r-xs(ng-repeat='skill in Search.data.Consultants' ng-show='skill.isRequired')
+                          span.wrapper-xs {{skill.name}}
+                          a.text-info-lt.font-bold(ng-click='Search.data.Consultants.splice($index,1)'): span.fa.fa-1x ×&nbsp;
+                      .col-xs-6.no-padder
+                        span.b-a.b-info.text-info-dker.m-r-xs(ng-repeat='skill in Search.data.Consultants' ng-show='!skill.isRequired')
+                          span.wrapper-xs {{skill.name}}
+                          a.text-info-lt.font-bold(ng-click='Search.data.Consultants.splice($index,1)'): span.fa.fa-1x ×&nbsp;
+                    .col-xs-12.no-padder
+                      .col-xs-9.no-padder.input-group
+                        input.form-control(style='z-index: 1;' type='text' ng-model='Search.Consultants.modelRequired' placeholder='Required Consultant' uib-typeahead='industry.name for industry in Search.Consultants.get($viewValue)' typeahead-loading='Search.Consultants.loadingClients' typeahead-no-results='Search.Consultants.noRequiredResults' typeahead-on-select='Search.Consultants.selectRequired($item)')
+                        span.input-group-btn
+                          button.btn.btn-default(type='button' ng-if='Search.Consultants.modelRequired && Search.Consultants.noRequiredResults' ng-click='Search.Consultants.create(Search.Consultants.modelRequired, true)'): i.fa.fa-plus
+                      div(ng-show='Search.Consultants.noRequiredResults')
+                        i.fa.fa-remove
+                        |  No Results Found
+
+          .row
+            .col-md-12.col-sm-4
+              .panel.panel-default
+                .panel-body
+                  .col-md-6.no-padder
+                    label.col-xs-12.col-sm-11.input-group
+                      | Consultant EM
+                    .col-xs-11.no-padder
+                      .col-xs-12.no-padder
+
+                        span.b-a.b-info.text-info-dker.m-r-xs(ng-repeat='skill in Search.data.ConsultantEMs' ng-show='skill.isRequired')
+                          span.wrapper-xs {{skill.name}}
+                          a.text-info-lt.font-bold(ng-click='Search.data.ConsultantEMs.splice($index,1)'): span.fa.fa-1x ×&nbsp;
+                      .col-xs-6.no-padder
+                        span.b-a.b-info.text-info-dker.m-r-xs(ng-repeat='skill in Search.data.ConsultantEMs' ng-show='!skill.isRequired')
+                          span.wrapper-xs {{skill.name}}
+                          a.text-info-lt.font-bold(ng-click='Search.data.ConsultantEMs.splice($index,1)'): span.fa.fa-1x ×&nbsp;
+                    .col-xs-12.no-padder
+                      .col-xs-9.no-padder.input-group
+                        input.form-control(style='z-index: 1;' type='text' ng-model='Search.ConsultantEMs.modelRequired' placeholder='Required Skills' uib-typeahead='industry.name for industry in Search.ConsultantEMs.get($viewValue)' typeahead-loading='Search.ConsultantEMs.loadingSkills' typeahead-no-results='Search.ConsultantEMs.noRequiredResults' typeahead-on-select='Search.ConsultantEMs.selectRequired($item)')
+                        span.input-group-btn
+                          button.btn.btn-default(type='button' ng-if='Search.ConsultantEMs.modelRequired && Search.ConsultantEMs.noRequiredResults' ng-click='Search.ConsultantEMs.create(Search.ConsultantEMs.modelRequired, true)'): i.fa.fa-plus
+                      div(ng-show='Search.ConsultantEMs.noRequiredResults')
+                        i.fa.fa-remove
+                        |  No Results Found
+
+
+                  .col-md-6.no-padder
+                    label.col-xs-12.col-sm-11.input-group
+                      | Client EM
+                    .col-xs-12.no-padder
+                      .col-xs-6.no-padder
+                        span.b-a.b-info.text-info-dker.m-r-xs(ng-repeat='skill in Search.data.ClientEMs' ng-show='skill.isRequired')
+                          span.wrapper-xs {{skill.name}}
+                          a.text-info-lt.font-bold(ng-click='Search.data.ClientEMs.splice($index,1)'): span.fa.fa-1x ×&nbsp;
+                      .col-xs-6.no-padder
+                        span.b-a.b-info.text-info-dker.m-r-xs(ng-repeat='skill in Search.data.ClientEMs' ng-show='!skill.isRequired')
+                          span.wrapper-xs {{skill.name}}
+                          a.text-info-lt.font-bold(ng-click='Search.data.ClientEMs.splice($index,1)'): span.fa.fa-1x ×&nbsp;
+                    .col-xs-12.no-padder
+                      .col-xs-9.no-padder.input-group
+                        input.form-control(style='z-index: 1;' type='text' ng-model='Search.ClientEMs.modelRequired' placeholder='Required Skills' uib-typeahead='industry.name for industry in Search.ClientEMs.get($viewValue)' typeahead-loading='Search.ClientEMs.loadingSkills' typeahead-no-results='Search.ClientEMs.noRequiredResults' typeahead-on-select='Search.ClientEMs.selectRequired($item)')
+                        span.input-group-btn
+                        span.input-group-btn
+                          button.btn.btn-default(type='button' ng-if='Search.ClientEMs.modelRequired && Search.ClientEMs.noRequiredResults' ng-click='Search.ClientEMs.create(Search.ClientEMs.modelRequired, true)'): i.fa.fa-plus
+                      div(ng-show='Search.ClientEMs.noRequiredResults')
+                        i.fa.fa-remove
+                        |  No Results Found
+                      //span.text-danger *
+                      //  input.form.form-control(type='text' name="clientEM" placeholder='Client EM' ng-model='ClientEM'  required)
+                      //  .text-danger(ng-show='searchForm.clientEM.$dirty && searchForm.clientEM.$invalid') Invalid
+
+                  .col-md-6.no-padder
+                    label.col-xs-12.col-sm-11.input-group
+                      | Consultant
+                    .col-xs-12.no-padder
+                      .col-xs-6.no-padder.m-t-xs.m-b-xs
+                        span.b-a.b-info.text-info-dker.m-r-xs(ng-repeat='skill in Search.data.JobSkills' ng-show='skill.isRequired')
+                          span.wrapper-xs {{skill.name}}
+                          a.text-info-lt.font-bold(ng-click='Search.data.JobSkills.splice($index,1)'): span.fa.fa-1x ×&nbsp;
+                      .col-xs-6.no-padder.m-t-xs.m-b-xs
+                        span.b-a.b-info.text-info-dker.m-r-xs(ng-repeat='skill in Search.data.JobSkills' ng-show='!skill.isRequired')
+                          span.wrapper-xs {{skill.name}}
+                          a.text-info-lt.font-bold(ng-click='Search.data.JobSkills.splice($index,1)'): span.fa.fa-1x ×&nbsp;
+                    .col-xs-12.no-padder
+                      .col-xs-9.no-padder.input-group
+                        input.form-control(style='z-index: 1;' type='text' ng-model='Search.Skills.modelRequired' placeholder='Required Skills' uib-typeahead='industry.name for industry in Search.Skills.get($viewValue)' typeahead-loading='Search.Skills.loadingSkills' typeahead-no-results='Search.Skills.noRequiredResults' typeahead-on-select='Search.Skills.selectRequired($item)')
+                        span.input-group-btn
+                          button.btn.btn-default(type='button' ng-if='Search.Skills.modelRequired && Search.Skills.noRequiredResults' ng-click='Search.Skills.create(Search.Skills.modelRequired, true)'): i.fa.fa-plus
+                      div(ng-show='Search.Skills.noRequiredResults')
+                        i.fa.fa-remove
+                        |  No Results Found
+                      //span.text-danger *
+                      //
+                      //  input.form.form-control(type='text' name="consultant" placeholder='Consultant Name' ng-model='consultantname'  required)
+                      //  .text-danger(ng-show='searchForm.consultant.$dirty && searchForm.consultant.$invalid')
+
+                  .col-md-6.no-padder
+                    label.col-xs-12.col-sm-11.input-group
+                      | Consultant EM
+                    .col-xs-12.no-padder
+                      .col-xs-6.no-padder.m-t-xs.m-b-xs
+                        span.b-a.b-info.text-info-dker.m-r-xs(ng-repeat='skill in Search.data.JobSkills' ng-show='skill.isRequired')
+                          span.wrapper-xs {{skill.name}}
+                          a.text-info-lt.font-bold(ng-click='Search.data.JobSkills.splice($index,1)'): span.fa.fa-1x ×&nbsp;
+                      .col-xs-6.no-padder.m-t-xs.m-b-xs
+                        span.b-a.b-info.text-info-dker.m-r-xs(ng-repeat='skill in Search.data.JobSkills' ng-show='!skill.isRequired')
+                          span.wrapper-xs {{skill.name}}
+                          a.text-info-lt.font-bold(ng-click='Search.data.JobSkills.splice($index,1)'): span.fa.fa-1x ×&nbsp;
+                    .col-xs-12.no-padder
+                      .col-xs-9.no-padder.input-group
+                        input.form-control(type='text' ng-model='Search.Skills.modelRequired' placeholder='Required Skills' uib-typeahead='industry.name for industry in Search.Skills.get($viewValue)' typeahead-loading='Search.Skills.loadingSkills' typeahead-no-results='Search.Skills.noRequiredResults' typeahead-on-select='Search.Skills.selectRequired($item)')
+                        span.input-group-btn
+                          button.btn.btn-default(style='z-index: 1;' type='button' ng-if='Search.Skills.modelRequired && Search.Skills.noRequiredResults' ng-click='Search.Skills.create(Search.Skills.modelRequired, true)'): i.fa.fa-plus
+                      div(ng-show='Search.Skills.noRequiredResults')
+                        i.fa.fa-remove
+                        |  No Results Found
+                      //span.text-danger *
+                      //  input.form.form-control(type='number' name="number" placeholder='' ng-model='ApplicantNew.data.number' q-applicant-job-unique='number' q-maxlength="14" ng-max="99999999999999" ng-pattern="/^[0-9]{10,14}$/" q-pattern="[^0-9]*" required)
+                      //  .text-danger(ng-show='searchForm.number.$dirty && searchForm.number.$invalid')
+                      //  span(ng-show='searchForm.number.$error.unique') with this number, Someone already applied.
+
+          .row
+            .col-md-12.col-sm-4
+              .panel.panel-default
+                .panel-body
+                  .col-sm-4.no-padder
+                    label.col-xs-12.col-sm-11.input-group
+                      | Location
+                      span.text-danger *
+                      input.form.form-control(type='number' placeholder='' ng-model='ApplicantNew.data.salary' q-maxlength="3" max="999" required)
+                  .col-sm-4.no-padder
+                    label.col-xs-12.col-sm-11.input-group
+                      | Industry
+                      span.text-danger *
+                      input.form.form-control(type='number' placeholder='' ng-model='ApplicantNew.data.expected_ctc' q-maxlength="3" max="999" required)
+                  .col-sm-4.no-padder
+                    label.col-xs-12.col-sm-11.input-group
+                      | Score
+                      span.text-danger *
+                      input.form.form-control(type='number' placeholder='' ng-model='ApplicantNew.data.expected_ctc' q-maxlength="3" max="999" required)
+
+
+          .row
+            .col-md-12.col-sm-4
+              .col-xs-20.no-padder
+                label.col-xs-12.input-group
+                  | Current Location
+                  span.text-danger *
+                    input.form.form-control(type='text' placeholder='' ng-model='ApplicantNew.data.name' ng-pattern='/^[a-zA-Z ]*$/' q-pattern='[^a-zA-Z ]*' autofocus ucf_sentence_case required)
+                    //.panel.panel-default
+                    //  .panel-body
+          .row
+            .col-md-10.col-sm-4
+              .col-xs-2.no-padder
+                label.col-xs-4.input-group
+                  //| Save
+                  //span.text-danger *
+                  input.button.btn.btn-primary.form-control(ngf-select='' type="button" ng-model='ApplicantNew.data.file' name='file' value="Save" required)
+              .col-xs-2.no-padder
+                label.col-xs-4.input-group
+                  //| Reset
+                  //span.text-danger *
+                  input.button.btn.btn-primary.form-control(ngf-select='' type="button" ng-model='ApplicantNew.data.file' name='file' value="Reset" required)
+
+          //.col-md-10
+          //  .text-danger(ng-show='searchForm.file.$touched && searchForm.file.$invalid')
+          //    span(ng-show='searchForm.file.$error.required') Please select CV
+          //  | {{ApplicantNew.data.file.name}}
+          //
+          //
+          //
+          //
+          //
+          //
+          //
+          //
+          //
+          //
+          //.col-md-5.cv-preview
+          //  .header(ng-hide="searchForm.$pristine") CV Preview
+          //  ul
+          //    li(ng-if="ApplicantNew.data.name")
+          //      span.preview-head Candidate Name :
+          //      span(ng-bind="ApplicantNew.data.name")
+          //    li(ng-if="ApplicantNew.data.email_id")
+          //      span.preview-head Email :
+          //      span(ng-bind="ApplicantNew.data.email_id")
+          //    li(ng-if="ApplicantNew.data.number")
+          //      span.preview-head Mobile Number :
+          //      span(ng-bind="ApplicantNew.data.number")
+          //    li(ng-if="ApplicantNew.Designations.model")
+          //      span.preview-head Designation :
+          //      span(ng-bind="ApplicantNew.Designations.model")
+          //    li(ng-if="ApplicantNew.Employers.model")
+          //      span.preview-head Current Employer :
+          //      span(ng-bind="ApplicantNew.Employers.model")
+          //    li(ng-if="ApplicantNew.data.salary")
+          //      span.preview-head Current CTC :
+          //      span(ng-bind="ApplicantNew.data.salary + ' Lakhs'")
+          //    li(ng-if="ApplicantNew.data.expected_ctc")
+          //      span.preview-head Expected CTC :
+          //      span(ng-bind="ApplicantNew.data.expected_ctc + ' Lakhs'")
+          //    li(ng-if="ApplicantNew.data.notice_period")
+          //      span.preview-head Notice Period :
+          //      span(ng-bind="ApplicantNew.data.notice_period + ' Days'")
+          //    li(ng-if="ApplicantNew.data.total_exp_y || ApplicantNew.data.total_exp_m")
+          //      span.preview-head Experience :
+          //      span
+          //        span(ng-if="ApplicantNew.data.total_exp_y && ApplicantNew.data.total_exp_y != '0'" ng-bind="ApplicantNew.data.total_exp_y + ' Year '")
+          //        span(ng-if="ApplicantNew.data.total_exp_m && ApplicantNew.data.total_exp_m != '0'" ng-bind="' ' + ApplicantNew.data.total_exp_m + ' Months'")
+          //    li(ng-if="ApplicantNew.Degrees.model")
+          //      span.preview-head Highest Qualification :
+          //      span(ng-bind="ApplicantNew.Degrees.model")
+          //    li(ng-if="ApplicantNew.Regions.model")
+          //      span.preview-head Location :
+          //      span(ng-bind="ApplicantNew.Regions.model")
+          //    li(ng-if="ApplicantNew.data.file.name")
+          //      span.preview-head CV File :
+          //      span(ng-bind="ApplicantNew.data.file.name")
+          //
+          //  .header(ng-show="ApplicantNew.job") Job Details
+          //  ul.job-list
+          //    li(ng-if="ApplicantNew.job.job_status")
+          //      span.preview-head Job Status :
+          //      span(ng-bind="ApplicantNew.job.job_status")
+          //    li(ng-if="ApplicantNew.job.role")
+          //      span.preview-head Role :
+          //      span(ng-class="searchForm.designation.$valid ? 'q-touched':''")
+          //        span(ng-bind="ApplicantNew.job.role")
+          //        span( ng-if="ApplicantNew.job.job_nature" ng-bind="' - ' + ApplicantNew.job.job_nature")
+          //    li(ng-if="ApplicantNew.job.client_name")
+          //      span.preview-head Company :
+          //      span(ng-bind="ApplicantNew.job.client_name")
+          //    li(ng-if="ApplicantNew.job.job_location")
+          //      span.preview-head Job Location :
+          //      span(ng-class="searchForm.region.$valid ? 'q-touched':''" ng-bind="ApplicantNew.job.job_location")
+          //    li(ng-if="ApplicantNew.job.vacancy")
+          //      span.preview-head Vacancy :
+          //      span(ng-bind="ApplicantNew.job.vacancy")
+          //    li(ng-if="ApplicantNew.job.min_sal || ApplicantNew.job.max_sal")
+          //      span.preview-head Salary Range :
+          //      span(ng-bind="ApplicantNew.job.max_sal? (ApplicantNew.job.min_sal? ApplicantNew.job.min_sal :''): (ApplicantNew.job.min_sal? ('Min '+ApplicantNew.job.min_sal+ ' '):'')")
+          //      span(ng-if="ApplicantNew.job.min_sal && ApplicantNew.job.max_sal") &nbsp;to&nbsp;
+          //      span(ng-bind="ApplicantNew.job.min_sal?(ApplicantNew.job.max_sal?( ApplicantNew.job.max_sal + ' Lakh'):''):(ApplicantNew.job.max_sal?( 'Max ' +ApplicantNew.job.max_sal + ' Lakh'):'')")
+          //    li(ng-if="ApplicantNew.job.min_exp || ApplicantNew.job.max_exp")
+          //      span.preview-head Experiance Range :
+          //      span(ng-class="searchForm.total_exp_y.$valid ? 'q-touched':''")
+          //        span(ng-bind="ApplicantNew.job.max_exp? (ApplicantNew.job.min_exp? ApplicantNew.job.min_exp :''): (ApplicantNew.job.min_exp? ('Min '+ApplicantNew.job.min_exp+ ' Years'):'')")
+          //        span(ng-if="ApplicantNew.job.min_exp && ApplicantNew.job.max_exp") &nbsp;to&nbsp;
+          //        span(ng-bind="ApplicantNew.job.min_exp?(ApplicantNew.job.max_exp?( ' ' + ApplicantNew.job.max_exp + ' Years'):''):(ApplicantNew.job.max_exp?( 'Max ' +ApplicantNew.job.max_exp + ' Years'):'')")
+          //    li(ng-if="ApplicantNew.job.skills && ApplicantNew.job.skills.length")
+          //      span.preview-head Skills :
+          //      span(ng-bind="ApplicantNew.job.skills.join(', ')")
+
+
+    .col-xs-6: button.btn.btn-success.pull-right(type='submit' ng-click='ApplicantNew.create()' ng-disabled='searchForm.$invalid') Search
+
+

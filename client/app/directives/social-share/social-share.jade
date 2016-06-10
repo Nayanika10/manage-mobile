@@ -1,0 +1,16 @@
+.modal-header
+  .modal-title
+    .h4.text-info Share Job
+      .close.text-dark(ng-click='SocialShare.cancel()') ×
+.modal-body
+  label.w-full.input-group
+    .col-xs-12.no-padder
+      input.col-sm-12(type="text" value="https://app.quezx.com/public/job/{{SocialShare.userIdBase64}}/{{SocialShare.jobCode}}")
+    .col-xs-12.no-padder
+      br
+      br
+      b Note:
+      span &nbsp;You can share this URL with your candidates on your email / social profiles to receive more applications. The CV's received through this unique URL will be displayed in the CVs Received tab of this JD
+
+.modal-footer
+  a.btn.btn-danger(ng-click='SocialShare.cancel()') Close

@@ -1,0 +1,274 @@
+.hbox
+
+
+          //.panel-heading
+            h3.panel-title Business
+          .panel-body
+            .panel-group
+              .panel.panel-default
+                table.table
+                  #MainMenu
+                    .list-group.panel
+                      a.list-group-item.list-group-item-info(href='#demo3', data-toggle='collapse', data-parent='#MainMenu',ng-click="$event.preventDefault();") Business
+                      #demo3.collapse.in(ng-if="data[0]")
+                        a.list-group-item(href='javascript:;',ng-click="$event.preventDefault();")
+                          | Senior level JD's
+                          i.fa.fa-caret-down
+                          .panel-body
+                            |       JD's
+                            span.label.label-primary(ng-if="data[0]" ng-bind='compareAndShow(data[0].cnt,data[0].target)')
+                          .panel-body
+                            |       CV's
+                            span.label.label-primary( ng-if="data[12]" ng-bind='compareAndShow(data[12].cnt,data[12].target)')
+                          .panel-body
+                            |       Interview Conduct
+                            span.label.label-primary(ng-if="data[18]" ng-bind='compareAndShow(data[18].cnt,data[18].target)')
+                            //| Subitem 3 c
+                            //i.fa.fa-caret-down
+                        a.list-group-item(href='javascript:;',ng-click="$event.preventDefault();")
+                          .panel-body
+                            |    JD's Received
+                            span.label.label-primary(ng-if="data[1]" ng-bind='compareAndShow(data[1].cnt,data[1].target)')
+                        a.list-group-item(href='javascript:;',ng-click="$event.preventDefault();")
+                          .panel-body
+                            |       Shortlist Ratio (%)
+                            span.label.label-primary(ng-if="data[15]" ng-bind='compareAndShow(data[15].cnt,data[15].target)')
+                          .panel-body
+                            |       Interview Conduct (%)
+                            span.label.label-primary(ng-if="data[16]" ng-bind='compareAndShow(data[16].cnt,data[16].target)')
+                        a.list-group-item(href='javascript:;',ng-click="$event.preventDefault();")
+                          .panel-body
+                            |       Selection Ratio (%)
+                            span.label.label-primary(ng-if="data[3]" ng-bind='compareAndShow(data[3].Ratio,data[3].target)')
+                          .panel-body
+                            |       CV Sent
+                        a.list-group-item(href='javascript:;',ng-click="$event.preventDefault();")
+                          .panel-body
+                            |    CV Received
+                            span.label.label-primary(ng-if="data[5]" ng-bind='compareAndShow(data[5].cnt,data[5].target)')
+                        a.list-group-item(href='javascript:;',ng-click="$event.preventDefault();")
+                          .panel-body
+                            |   Interview Conducted
+                            span.label.label-primary(ng-if="data[17]" ng-bind='compareAndShow(data[17].cnt,data[17].target)')
+                        a.list-group-item(href='javascript:;',ng-click="$event.preventDefault();")
+                          .panel-body
+                            |  Offers
+                            span.label.label-primary(ng-if="data[14]" ng-bind='compareAndShow(data[14].cnt,data[14].target)')
+
+                      a.list-group-item.list-group-item-info(href='#demo4', data-toggle='collapse', data-parent='#MainMenu',ng-click="$event.preventDefault();") Growth
+                      #demo4.collapse
+                        a.list-group-item(href='javascript:;',ng-click="$event.preventDefault();")
+                          .panel-body
+                            |       New Client
+                            span.label.label-primary(ng-if="data[10]" ng-bind='compareAndShow(data[10].cnt,data[10].target)')
+                          .panel-body
+                            |       New Client JD's
+                            span.label.label-primary(ng-if="data[11]" ng-bind='compareAndShow(data[11].cnt,data[11].target)')
+                          .panel-body
+                            |       Active Client
+                            span.label.label-primary(ng-if="data[2]" ng-bind='compareAndShow(data[2].cnt,data[2].target)')
+                        a.list-group-item(href='javascript:;',ng-click="$event.preventDefault();")
+                          .panel-body
+                            |       New Consultant
+                            span.label.label-primary(ng-if="data[7]" ng-bind='compareAndShow(data[7].cnt,data[7].target)')
+                          .panel-body
+                            |       Active Consultant
+                            span.label.label-primary(ng-if="data[6]" ng-bind='compareAndShow(data[6].cnt,data[6].target)')
+                        a.list-group-item(href='')
+                          .panel-body
+                            |       Tech Consultant
+                            span.label.label-primary(ng-bind='compareAndShow(7,50)')
+                      a.list-group-item.list-group-item-info(href='#demo5', data-toggle='collapse', data-parent='#MainMenu',ng-click="$event.preventDefault();") Operations
+                      #demo5.collapse
+                        a.list-group-item(href='#SubMenu2', data-toggle='collapse', data-parent='#SubMenu2',ng-click="$event.preventDefault();")
+                          | Expert
+                          i.fa.fa-caret-down
+
+                          .panel-body
+                            |       JD's
+                            span.label.label-primary(ng-if="data[8]" ng-bind='compareAndShow(data[8].cnt,data[8].target)')
+                          .panel-body
+                            |       CV's
+                            span.label.label-primary(ng-if="data[9]" ng-bind='compareAndShow(data[9].cnt,data[9].target)')
+                          .panel-body
+                            |       Interview
+                            span.label.label-primary(ng-if="data[19]" ng-bind='compareAndShow(data[19].cnt,data[19].target)')
+                        a.list-group-item(href='#SubMenu3', data-toggle='collapse', data-parent='#SubMenu3',ng-click="$event.preventDefault();")
+                          |Average Feedback Time
+                          i.fa.fa-caret-down
+
+                          .panel-body
+                            |       CV
+                            span.label.label-primary(ng-if="data[4]" ng-bind='compareAndShow(data[4].cnt,data[4].target)')
+                          .panel-body
+                            |       Interview
+                            span.label.label-primary(ng-if="data[13]" ng-bind='compareAndShow(data[13].cnt,data[13].target)')
+
+
+                  //#accordion.panel-group
+                  //  #panel1.panel.panel-default
+                  //    .panel-heading
+                  //      h4.panel-title
+                  //        a(data-toggle='collapse', data-target='#collapseOne', href='#collapseOne',ng-click="$event.preventDefault();")
+                  //          | Senior level JD's
+                  //    #collapseOne.panel-collapse.collapse.in
+                  //      .panel-body
+                  //        |       JD's
+                  //        span.label.label-primary(ng-bind='compareAndShow(data[0].cnt,data[0].target)')
+                  //      .panel-body
+                  //        |       CV's
+                  //        span.label.label-primary(ng-bind='compareAndShow(data[12].cnt,data[12].target)')
+                  //      .panel-body
+                  //        |       Interview Conduct
+                  //        span.label.label-primary(ng-bind='compareAndShow(data[18].cnt,data[18].target)')
+
+
+                  //.panel-heading
+                  //  h3.panel-title Senior level JD's
+                  //tr
+                  //  td
+                  //    |       JD's
+                  //    span.label.label-primary(ng-bind='compareAndShow(data[0].cnt,data[0].target)')
+                  //tr
+                  //  td
+                  //    |       CV's
+                  //    span.label.label-primary(ng-bind='compareAndShow(data[12].cnt,data[12].target)')
+                  //tr
+                  //  td
+                  //    |       Interview Conduct
+                  //    span.label.label-primary(ng-bind='compareAndShow(data[18].cnt,data[18].target)')
+
+          //table.table
+          //  tr
+          //    td
+          //      |       JD's Received
+          //      span.label.label-primary(ng-bind='compareAndShow(data[1].cnt,data[1].target)')
+          //
+          //.panel.panel-default
+          //  .panel-body
+          //    .panel.panel-default
+          //      table.table
+          //        tr
+          //          td
+          //            |       Shortlist Ratio (%)
+          //            span.label.label-primary(ng-bind='compareAndShow(data[15].cnt,data[15].target)')
+          //        tr
+          //          td
+          //            |       Interview Conduct (%)
+          //            span.label.label-primary(ng-bind='compareAndShow(data[16].cnt,data[16].target)')
+          //
+          //  .panel-body
+          //    .panel-group
+          //      .panel.panel-default
+          //        table.table
+          //          tr
+          //            td
+          //              |       Selection Ratio (%)
+          //              span.label.label-primary(ng-bind='compareAndShow(data[3].Ratio,data[3].target)')
+          //
+          //          tr
+          //            td
+          //              |       CV Sent
+          //              //span.label.label-primary(ng-bind='compareAndShow(data[12].cnt,data[12].target)')
+          //
+          //.panel-body-fixed-panel
+          //  .panel-group
+          //    .panel.panel-default
+          //      table.table
+          //        tr
+          //          td
+          //            |       CV Received
+          //            span.label.label-primary(ng-bind='compareAndShow(data[5].cnt,data[5].target)')
+          //        tr
+          //          td
+          //            |       Interview Conducted
+          //            span.label.label-primary(ng-bind='compareAndShow(data[17].cnt,data[17].target)')
+          //        tr
+          //          td
+          //            |       Offers
+          //            span.label.label-primary(ng-bind='compareAndShow(data[14].cnt,data[14].target)')
+
+        //.panel.panel-default
+        //  .panel-heading
+        //    h3.panel-title   Growth
+        //  .panel.panel-default
+        //    .panel-body
+        //      .panel.panel-default
+        //        table.table
+        //          tr
+        //            td
+        //              |       New Client
+        //              span.label.label-primary(ng-bind='compareAndShow(data[10].cnt,data[10].target)')
+        //
+        //          tr
+        //            td
+        //              |       New Client JD's
+        //              span.label.label-primary(ng-bind='compareAndShow(data[11].cnt,data[11].target)')
+        //
+        //          tr
+        //            td
+        //              |       Active Client
+        //              span.label.label-primary(ng-bind='compareAndShow(data[2].cnt,data[2].target)')
+        //
+        //
+        //
+        //    .panel-body
+        //      .panel.panel-default
+        //        table.table
+        //          tr
+        //            td
+        //              |       New Consultant
+        //              span.label.label-primary(ng-bind='compareAndShow(data[7].cnt,data[7].target)')
+        //
+        //          tr
+        //            td
+        //              |       Active Consultant
+        //              span.label.label-primary(ng-bind='compareAndShow(data[6].cnt,data[6].target)')
+        //
+        //.panel.panel-default
+        //  .panel-group
+        //    .panel.panel-default
+        //      table.table
+        //        tr
+        //          td
+        //            |       Tech Consultant
+        //            span.label.label-primary(ng-bind='compareAndShow(7,50)')
+
+        //.panel.panel-default
+        //  .panel-heading
+        //    h3.panel-title Operation
+        //  .panel-body
+        //    .panel-group
+        //      .panel.panel-default
+        //        table.table
+        //          .panel-heading
+        //            h3.panel-title Expert
+        //          tr
+        //            td
+        //
+        //              |       JD's
+        //              span.label.label-primary(ng-bind='compareAndShow(data[8].cnt,data[8].target)')
+        //          tr
+        //            td
+        //              |       CV's
+        //              span.label.label-primary(ng-bind='compareAndShow(data[9].cnt,data[9].target)')
+        //          tr
+        //            td
+        //              |       Interview
+        //              span.label.label-primary(ng-bind='compareAndShow(data[19].cnt,data[19].target)')
+        //
+        //  .panel-body
+        //    .panel-group
+        //      .panel.panel-default
+        //        table.table
+        //          .panel-heading
+        //            h3.panel-title Average Feedback time (days)
+        //          tr
+        //            td
+        //              |       CV
+        //              span.label.label-primary(ng-bind='compareAndShow(data[4].cnt,data[4].target)')
+        //          tr
+        //            td
+        //              |       Interview
+        //              span.label.label-primary(ng-bind='compareAndShow(data[13].cnt,data[13].target)')
+        //

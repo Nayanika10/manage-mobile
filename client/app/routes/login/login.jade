@@ -1,0 +1,25 @@
+.container.w-xxl.w-auto-xs(ng-init='App.app.settings.container = false;')
+  a.navbar-brand.block.m-t(href='')
+    img(src='/assets/images/quezx-logo.svg', alt='{{App.app.name}}')
+  .m-b-xs
+    .wrapper.text-center: strong Sign in
+
+    form.form-validation(name="form" ng-submit='Signin.signin(Signin.user)')
+      .text-danger.wrapper.text-center(ng-show='Signin.authError') {{Signin.authError}}
+
+      .list-group.list-group-sm.m-b-md
+        .list-group-item: input.form-control.no-border(type='text' placeholder='Username' ng-model='Signin.user.username' required)
+        .list-group-item: input.form-control.no-border(type='password' placeholder='Password' ng-model='Signin.user.password' required)
+
+      button.btn.btn-lg.btn-primary.btn-block(type='submit' ng-disabled='form.$invalid') Log in
+
+      .hide.text-center.m-t.m-b: a(ui-sref='access.forgotpass') Forgot password?
+
+      .line.line-dashed
+
+      //- p.text-center: small Do not have an account?
+
+      //- a.btn.btn-lg.btn-default.btn-block(ui-sref='access.signup') Create an account
+
+  .text-center
+    footer

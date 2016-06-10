@@ -1,0 +1,48 @@
+.hobx(before-bottom='JobsReferencesList.loadApplicants()')
+  directive-header(viewdata="JobsReferencesList" buttons="{buckets:true,interviews:false,references:true,share:true,upload:true,view:true,highlight:'upload'}" App="App")
+  div
+    .m-b-xs.hbox.m-t-xl(ng-if='JobsReferencesList.applicants.length === 0')
+      .col: h1.text-center.text-muted(ng-if='!JobsReferencesList.ui.loading') No Applicants
+    .m-t-md
+    .clearfix
+    .m-t-md
+    .m-b-md.hbox.card-applicant(ng-repeat='applicant in JobsReferencesList.applicants')
+      .col.bg-white
+        .col-xs-12.col-md-12.no-padder
+          .tl-content.m-none.padder.w-full.w-auto-xs
+            .m-b-sm
+              label.i-checks.m-b-none
+                input(type='checkbox' ng-model='applicant.checked')
+                i
+              a(ui-sref='job.reference.view({jobId: JobsReferencesList.job.id,referenceId: applicant.id})')
+                strong.text-dark  {{applicant.name}}
+              .text-danger.pull-right.m-t-n-xs(ng-if='applicant.approval_status == "Action Required"') Action Required
+              .text-danger.pull-right.m-t-n-xs(ng-if='applicant.approval_status == "Approved"') Approved
+              .text-danger.pull-right.m-t-n-xs(ng-if='applicant.approval_status == "Duplicate"') Duplicate
+              .text-danger.pull-right.m-t-n-xs(ng-if='applicant.approval_status == "Reject"') Rejected
+            .panel-body.pull-in.b-t.wrapper-xs.text-black
+              .col-xs-4.text-ellipsis
+                i.fa.fa-bookmark(style='margin:0 2px;')
+                | {{applicant.designation}}
+              .col-xs-4.text-ellipsis
+                i.fa.fa-graduation-cap
+                | {{applicant.degree_id}}
+              .col-xs-4.text-ellipsis
+                i.fa.fa-inr
+                |  {{applicant.expected_salary}}&nbsp;Lakhs
+              .col-xs-4.text-ellipsis
+                i.fa.fa-briefcase
+                |  {{applicant.employer}}
+              .col-xs-4.text-ellipsis
+                i.fa.fa-line-chart
+                |  {{applicant.total_exp}}&nbsp;Years
+              .col-xs-4.text-ellipsis
+                i.fa.fa-map-marker
+                |  {{applicant.location}}
+    .col-xs-2.col-xs-offset-5
+      button.pull-left.btn.active.m-t-xs(ng-if="JobsReferencesList.ui.loading")
+        i.fa.fa-circle-o-notch.fa-spin
+        strong &nbsp;Loading
+      button.pull-left.btn.btn-primary.m-t-xs(ng-if="JobsReferencesList.ui.lazyLoad" ng-click="JobsReferencesList.loadApplicants()")
+        i.fa.fa-plus-circle
+        strong &nbsp;Load More

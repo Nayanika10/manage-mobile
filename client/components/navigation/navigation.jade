@@ -1,0 +1,44 @@
+//- list
+ul.nav
+  //li.hidden-folded.padder.m-t.m-b-sm.text-muted.text-xs
+  //  span Navigation
+  //li.text-white(ui-sref-active='active'): a(ui-sref='dashboard')
+  //  i.fa.fa-dashboard.icon
+  //  span.font-bold Dashboard
+  //li.text-white(ui-sref-active='active'): a(ui-sref='jobs.list')
+  //  b.hide.badge.bg-info.pull-right 20
+  //  i.fa.fa-list-alt.icon
+  //  span.font-bold Positions
+  li.text-white(ui-sref-active='active'): a(ui-sref='search')
+    i.fa.fa-users.icon
+    span.font-bold Candidates
+  li.text-white(ui-sref-active='active'): a(ui-sref='scoreboard')
+    i.fa.fa-users.icon
+    span.font-bold Scoreboard
+
+
+  //li.text-white(ui-sref-active='active'): a(ui-sref='calendar')
+  //  i.fa.fa-calendar.icon.text-default-dker
+  //  span.font-bold Calendar
+  //li.hide(ui-sref-active='active'): a(ui-sref='payment')
+  //  i.fa.fa-bar-chart.icon.text-danger-lter
+  //  span.font-bold Statistics
+  //li.hide(ui-sref-active='active'): a(ui-sref='payment')
+  //  i.fa.fa-credit-card.icon.text-success-lter
+  //  span.font-bold Payment
+
+
+//div.navbar.navbar-default.navbar-static-top(ng-controller='NavbarController')
+//  div.container
+//    div.navbar-header
+//      button.navbar-toggle(type='button', ng-click='nav.isCollapsed = !nav.isCollapsed')
+//        span.sr-only Toggle navigation
+//        span.icon-bar
+//        span.icon-bar
+//        span.icon-bar
+//      a.navbar-brand(href='/') ui-gen
+//
+//    div#navbar-main.navbar-collapse.collapse(collapse='nav.isCollapsed')
+//      ul.nav.navbar-nav
+//        li(ng-repeat='item in nav.menu', ui-sref-active='active')
+//          a(ui-sref='{{item.state}}') {{item.title}}
