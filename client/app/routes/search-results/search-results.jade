@@ -225,7 +225,7 @@
         .panel.panel-default
           .panel-heading
             p
-              a.text-ellipsis(href='/applicants/{{applicant.id}}') {{applicant.name | capitalize}}
+              a.text-ellipsis(ui-sref='applicant.view({applicantId: applicant.id })') {{applicant.name | capitalize}}
           .panel-body
             p
               span(ng-bind="applicant._root_.client_name + '-' + applicant._root_.recruiter_username ")
