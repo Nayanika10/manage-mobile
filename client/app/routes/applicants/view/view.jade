@@ -2,86 +2,158 @@ div
   .col-md-3.no-padder.fixed-applicant-details
     div(style='position: relative; height: 100%; width: 100%; top: 0; overflow-x: hidden; overflow-wrap: break-word;')
       //- Applicant top cover container
-      .wrapper-xs.bg-gd-applicant.dker.m-b-xs
-        .hbox.m-t-xs.text-white
-          .col.thumb-lg
-            .fa-stack.fa-3x.text-info-dker
-              i.fa.fa-circle.fa-stack-2x.fa-inverse
-              i.fa.fa-user.fa-stack-1x.m-t-xs(style='font-size: 1.5em;margin-top: 0.14em;color: #104465;')
-          .col.v-middle
-            .h4.text-ellipsis(title='{{ApplicantView.data.name}}') {{ApplicantView.data.name}}
-            div.text-ellipsis(style="color:#70AACF" ui-sref="job.view({jobId:ApplicantView.data._root_.id})"  uib-tooltip='{{ApplicantView.data._root_.client_name}}')
-              i.fa.fa-bookmark(style="color:#70AACF")
-              | &nbsp;&nbsp;{{ApplicantView.data._root_.client_name}}
-            div.text-ellipsis(style="color:#70AACF" ui-sref="job.view({jobId:ApplicantView.data._root_.id})" uib-tooltip='{{ApplicantView.data._root_.role}}')
-              i.fa.fa-briefcase(style="color:#70AACF")
-              | &nbsp;{{ApplicantView.data._root_.role}}
+      .wrapper-xs.dker.m-b-xs
+        .hbox.m-t-xs.text-black
+          //.col.thumb-lg
+          //  .fa-stack.fa-3x.text-info-dker
+          //    i.fa.fa-circle.fa-stack-2x.fa-inverse
+          //    i.fa.fa-user.fa-stack-1x.m-t-xs(style='font-size: 1.5em;margin-top: 0.14em;color: #104465;')
+          //.col.v-middle
+          //  .h4.text-ellipsis(title='{{ApplicantView.data.name}}') {{ApplicantView.data.name}}
+          //  div.text-ellipsis(style="color:#70AACF" ui-sref="job.view({jobId:ApplicantView.data._root_.id})"  uib-tooltip='{{ApplicantView.data._root_.client_name}}')
+          //    i.fa.fa-bookmark(style="color:#70AACF")
+          //    | &nbsp;&nbsp;{{ApplicantView.data._root_.client_name}}
+          //  div.text-ellipsis(style="color:#70AACF" ui-sref="job.view({jobId:ApplicantView.data._root_.id})" uib-tooltip='{{ApplicantView.data._root_.role}}')
+          //    i.fa.fa-briefcase(style="color:#70AACF")
+          //    | &nbsp;{{ApplicantView.data._root_.role}}
 
-        .m-b-xs
-          .hbox(uib-dropdown='' uib-keyboard-nav='' dropdown-append-to-body)
-            // Todo: #1 ChangeState Button Directive Creation
-            button.btn.rounded(class='btn-{{App.states[ApplicantView.data.state_id].config.color}}' uib-dropdown-toggle='' ng-disabled='App.states[ApplicantView.data.state_id].Actions.length===0')
-              | {{ApplicantView.data.state_name}}&nbsp;
-              span(ng-if='App.states[ApplicantView.data.state_id].Actions.length>0').caret
+          .container
+            .panel.panel-default
+              .panel-heading
+                p
+                  h4.text-ellipsis(style="color:#1750a9")(title='{{ApplicantView.data.name}}') {{ApplicantView.data.name}}
+              .panel-body
+                p
+                  span(ui-sref="job.view({jobId:ApplicantView.data._root_.id})"  uib-tooltip='{{ApplicantView.data._root_.client_name}}')
+                  i.fa.fa-bookmark(style="color:#383f44")
+                    | &nbsp;&nbsp;{{ApplicantView.data._root_.client_name}}
+                p
+                  span(ui-sref="job.view({jobId:ApplicantView.data._root_.id})" uib-tooltip='{{ApplicantView.data._root_.role}}')
+                  i.fa.fa-briefcase(style="color:#383f44")
+                    | &nbsp;{{ApplicantView.data._root_.role}}
 
-            a.col.v-middle(href='' style='width: 2em;'): i.b-a.b-2x.b-success.wrapper-xs.text-success.fa.fa-download(ng-click='App.downloadApplicant([ApplicantView.data.id])' title='Download CV')
-            ul.uib-dropdown-menu(role='menu' aria-labelledby='simple-btn-keyboard-nav')
-              li(role='menuitem' ng-repeat='state in App.states[ApplicantView.data.state_id].Actions' ng-if="App.states[state.state_id].name")
-                a(href='' ng-click='App.changeState(ApplicantView.data, state.state_id)') {{App.states[state.state_id].name}}
+                //.container
+                //  .m-b-xs
+                //    .hbox(uib-dropdown='' uib-keyboard-nav='' dropdown-append-to-body)
+                //      // Todo: #1 ChangeState Button Directive Creation
+                //      button.btn.rounded(class='btn-{{App.states[ApplicantView.data.state_id].config.color}}' uib-dropdown-toggle='' ng-disabled='App.states[ApplicantView.data.state_id].Actions.length===0')
+                //        | {{ApplicantView.data.state_name}}&nbsp;
+                //        span(ng-if='App.states[ApplicantView.data.state_id].Actions.length>0').caret
+
+                .container
+                    .hbox(uib-dropdown='' uib-keyboard-nav='' dropdown-append-to-body)
+                      // Todo: #1 ChangeState Button Directive Creation
+                      span.label.label-primary(class='label-{{App.states[ApplicantView.data.state_id].config.color}}'uib-dropdown-toggle=''  ng-disabled='App.states[ApplicantView.data.state_id].Actions.length===0')
+                        | {{ApplicantView.data.state_name}}&nbsp;
+                        span(ng-if='App.states[ApplicantView.data.state_id].Actions.length>0').caret
+
+
+
+
+              .container
+                ul.nav.nav-tabs
+                  li.active
+                    a(data-toggle='tab',href='#Comment',ng-click="$event.preventDefault();")
+                      span.fa.fa-commenting
+
+                  li
+                    a(data-toggle='tab', href='#Download',ng-click="$event.preventDefault();")
+                      i.b-2x.wrapper-xs.fa.fa-download(ng-click='App.downloadApplicant([ApplicantView.data.id])' title='Download CV')
+
+                .tab-content
+                  #Comment.tab-pane.fade.in.active
+                    .col-md-3.nav-comment.no-padder(ng-controller='ApplicantCommentsController as Comments')
+                      .col-xs-12(style='position: relative; height: 100%; width: 100%; top: 0; bottom: 50px; overflow-x: hidden; background-color: #fff; overflow-wrap: break-word;' scroll-to-bottom='Comments.ui.scrollToBottom')
+                        .col
+                          .hbox.b-b.padder-v(ng-repeat='comment in Comments.data | orderBy: "created_at"')
+                            //.col.text-center.thumb-sm
+                            //.fa-stack.fa-2x.text-dark
+                            //i.fa.fa-circle.fa-stack-2x
+                            //span.fa.fa-stack-1x.h3.fa-inverse.text-white.m-t-sm {{comment.user.name[0]}}
+                            .col.clearfix
+                              .col-xs-12
+                              .text-info-dker {{comment.user.name}}
+                              .text-danger-dker {{App.states[comment.state_id].name}}
+                              .text-success.dk {{comment.scheduled_on | date: 'MMM d, yyyy h:mm a'}}
+                              p {{comment.body}}
+                              .text-muted.pull-right(title='{{comment.created_on | date: "medium"}}') {{comment.created_at | date: 'd MMM, h:mm a'}}
+
+                          .hbox(style='height: 40px;')
+                      form.form.form-validation.col-xs-12.wrapper-xs.bg-white.col-xs-12(style='position: relative; height: 50px; width: 100%; bottom: 82px; background-color: #fff;' ng-submit='Comments.insert()' name='commentForm')
+                        .input-group
+                          input.form-control(type='text' name='comment' placeholder='enter to comment' ng-model='Comments.post.comment' required)
+                          span.input-group-btn
+                            button.btn.btn-default(type='sumbit' ng-disabled='commentForm.$invalid')
+                              i.fa.fa-paper-plane
+
+                  #Download.tab-pane.fade
+
+
+        //.m-b-xs
+        //  .hbox(uib-dropdown='' uib-keyboard-nav='' dropdown-append-to-body)
+        //    // Todo: #1 ChangeState Button Directive Creation
+        //    button.btn.rounded(class='btn-{{App.states[ApplicantView.data.state_id].config.color}}' uib-dropdown-toggle='' ng-disabled='App.states[ApplicantView.data.state_id].Actions.length===0')
+        //      | {{ApplicantView.data.state_name}}&nbsp;
+        //      span(ng-if='App.states[ApplicantView.data.state_id].Actions.length>0').caret
+        //
+        //    a.col.v-middle(href='' style='width: 2em;'): i.b-a.b-2x.b-success.wrapper-xs.text-success.fa.fa-download(ng-click='App.downloadApplicant([ApplicantView.data.id])' title='Download CV')
+        //    //ul.uib-dropdown-menu(role='menu' aria-labelledby='simple-btn-keyboard-nav')
+        //      li(role='menuitem' ng-repeat='state in App.states[ApplicantView.data.state_id].Actions' ng-if="App.states[state.state_id].name")
+        //        a(href='' ng-click='App.changeState(ApplicantView.data, state.state_id)') {{App.states[state.state_id].name}}
 
 
       //- Applicant Employee Information
-      .panel.panel-default.no-border
-        .panel-heading.bg-dark.lter.h4
-          .h4.text-white Employee Information
-        .panel-body.div-alternate
-          .h4
-            .text-u-c.text-sm.text-muted Designation
-            .m-l-xs {{ApplicantView.data.exp_designation}}
-          .h4.m-t-sm
-            .text-u-c.text-sm.text-muted Current Company
-            .m-l-xs {{ApplicantView.data.exp_employer}}
-          .h4.m-t-sm
-            .text-u-c.text-sm.text-muted Qualification
-            .m-l-xs {{ApplicantView.data.edu_degree}}
-          .h4.m-t-sm
-            .text-u-c.text-sm.text-muted Location
-            .m-l-xs {{ApplicantView.data.exp_location}}
-          .h4.m-t-sm
-            .text-u-c.text-sm.text-muted Current CTC
-            .m-l-xs {{ApplicantView.data.exp_salary}} Lakhs
-          .h4.m-t-sm
-            .text-u-c.text-sm.text-muted Expected CTC
-            .m-l-xs {{ApplicantView.data.expected_ctc}} Lakhs
-          .h4.m-t-sm
-            .text-u-c.text-sm.text-muted Work Experience
-            .m-l-xs {{ApplicantView.data.total_exp | number: 0}} Years
-          .h4.m-t-sm
-            .text-u-c.text-sm.text-muted Notice Period
-            .m-l-xs {{ApplicantView.data.notice_period}} Days
+      //.panel.panel-default.no-border
+      //  .panel-heading.bg-dark.lter.h4
+      //    .h4.text-white Employee Information
+      //  .panel-body.div-alternate
+      //    .h4
+      //      .text-u-c.text-sm.text-muted Designation
+      //      .m-l-xs {{ApplicantView.data.exp_designation}}
+      //    .h4.m-t-sm
+      //      .text-u-c.text-sm.text-muted Current Company
+      //      .m-l-xs {{ApplicantView.data.exp_employer}}
+      //    .h4.m-t-sm
+      //      .text-u-c.text-sm.text-muted Qualification
+      //      .m-l-xs {{ApplicantView.data.edu_degree}}
+      //    .h4.m-t-sm
+      //      .text-u-c.text-sm.text-muted Location
+      //      .m-l-xs {{ApplicantView.data.exp_location}}
+      //    .h4.m-t-sm
+      //      .text-u-c.text-sm.text-muted Current CTC
+      //      .m-l-xs {{ApplicantView.data.exp_salary}} Lakhs
+      //    .h4.m-t-sm
+      //      .text-u-c.text-sm.text-muted Expected CTC
+      //      .m-l-xs {{ApplicantView.data.expected_ctc}} Lakhs
+      //    .h4.m-t-sm
+      //      .text-u-c.text-sm.text-muted Work Experience
+      //      .m-l-xs {{ApplicantView.data.total_exp | number: 0}} Years
+      //    .h4.m-t-sm
+      //      .text-u-c.text-sm.text-muted Notice Period
+      //      .m-l-xs {{ApplicantView.data.notice_period}} Days
 
       //- Applicant Contact Details
-      .panel.panel-default.no-border
-        .panel-heading.bg-dark.lter.h4
-          .h4.text-white Contact Details
-        .panel-body
-          .h4.m-xs
-            i.fa.fa-lg.fa-phone.text-success-dker.wrapper-xs
-            a(href="tel:{{ApplicantView.data.mobile}}")  &nbsp; {{ApplicantView.data.mobile}}
-          .h4.m-xs
-            i.fa.fa-lg.fa-envelope.text-info-dker.wrapper-xs
-            a(ng-href="mailto:{{ApplicantView.data.email}}")  &nbsp; {{ApplicantView.data.email}}
+      //.panel.panel-default.no-border
+      //  .panel-heading.bg-dark.lter.h4
+      //    .h4.text-white Contact Details
+      //  .panel-body
+      //    .h4.m-xs
+      //      i.fa.fa-lg.fa-phone.text-success-dker.wrapper-xs
+      //      a(href="tel:{{ApplicantView.data.mobile}}")  &nbsp; {{ApplicantView.data.mobile}}
+      //    .h4.m-xs
+      //      i.fa.fa-lg.fa-envelope.text-info-dker.wrapper-xs
+      //      a(ng-href="mailto:{{ApplicantView.data.email}}")  &nbsp; {{ApplicantView.data.email}}
 
       //- Applicant Skills
-      .panel.panel-default.no-border(ng-if="ApplicantView.data.skills.length>0")
-        .panel-heading.bg-dark.lter.h4
-          .h4.text-white Skills
-        .panel-body
-          .h6.clearfix
-            .pull-left.b-a.b-info.text-info-dker.m-r-xs.m-b-xs.r(ng-repeat='skill in ApplicantView.data.skills' style='padding: 2px;' ng-if='ApplicantView.data.showAllSkill || $index < 6') {{skill}}
-            a.pull-left(ng-click='ApplicantView.data.showAllSkill = !ApplicantView.data.showAllSkill')
-              span.font-bold.text-info-dker(ng-if='ApplicantView.data.showAllSkill') – Less
-              span.font-bold.text-info-dker(ng-if='!ApplicantView.data.showAllSkill') + More
+      //.panel.panel-default.no-border(ng-if="ApplicantView.data.skills.length>0")
+      //  .panel-heading.bg-dark.lter.h4
+      //    .h4.text-white Skills
+      //  .panel-body
+      //    .h6.clearfix
+      //      .pull-left.b-a.b-info.text-info-dker.m-r-xs.m-b-xs.r(ng-repeat='skill in ApplicantView.data.skills' style='padding: 2px;' ng-if='ApplicantView.data.showAllSkill || $index < 6') {{skill}}
+      //      a.pull-left(ng-click='ApplicantView.data.showAllSkill = !ApplicantView.data.showAllSkill')
+      //        span.font-bold.text-info-dker(ng-if='ApplicantView.data.showAllSkill') – Less
+      //        span.font-bold.text-info-dker(ng-if='!ApplicantView.data.showAllSkill') + More
 
       //- Applicant Followers
       //.panel.panel-default.no-border.hide
@@ -97,29 +169,33 @@ div
       //        span.font-bold.text-info-dker(ng-if='!ApplicantView.data.showAllFollower') + More
 
     //- Resume container
-  .col-md-6.no-padder.fixed-resume
-    div(style='position: relative; height: 100%; width: 100%; top: 0; overflow: hidden;')
-      iframe.h-full.b-a.b-light.w-full(ng-src='{{ApplicantView.trustSrc(ApplicantView.resumeSrc)}}')
+  //.col-md-6.no-padder.fixed-resume
+  //  div(style='position: relative; height: 100%; width: 100%; top: 0; overflow: hidden;')
+  //    iframe.h-full.b-a.b-light.w-full(ng-src='{{ApplicantView.trustSrc(ApplicantView.resumeSrc)}}')
 
-  .col-md-3.nav-comment.no-padder(ng-controller='ApplicantCommentsController as Comments')
-    .col-xs-12(style='position: relative; height: 100%; width: 100%; top: 0; bottom: 50px; overflow-x: hidden; background-color: #fff; overflow-wrap: break-word;' scroll-to-bottom='Comments.ui.scrollToBottom')
-      .col
-        .hbox.b-b.padder-v(ng-repeat='comment in Comments.data | orderBy: "created_at"')
-          .col.text-center.thumb-sm
-            .fa-stack.fa-2x.text-dark
-              i.fa.fa-circle.fa-stack-2x
-              span.fa.fa-stack-1x.h3.fa-inverse.text-white.m-t-sm {{comment.user.name[0]}}
-          .col.clearfix
-            .col-xs-12
-              .text-info-dker {{comment.user.name}}
-              .text-danger-dker {{App.states[comment.state_id].name}}
-              .text-success.dk {{comment.scheduled_on | date: 'MMM d, yyyy h:mm a'}}
-              p {{comment.body}}
-              .text-muted.pull-right(title='{{comment.created_on | date: "medium"}}') {{comment.created_at | date: 'd MMM, h:mm a'}}
-        .hbox(style='height: 40px;')
-    form.form.form-validation.col-xs-12.wrapper-xs.bg-white.col-xs-12(style='position: relative; height: 50px; width: 100%; bottom: 82px; background-color: #fff;' ng-submit='Comments.insert()' name='commentForm')
-      .input-group
-        input.form-control(type='text' name='comment' placeholder='enter to comment' ng-model='Comments.post.comment' required)
-        span.input-group-btn
-          button.btn.btn-default(type='sumbit' ng-disabled='commentForm.$invalid')
-            i.fa.fa-paper-plane
+
+
+
+
+  //.col-md-3.nav-comment.no-padder(ng-controller='ApplicantCommentsController as Comments')
+  //  .col-xs-12(style='position: relative; height: 100%; width: 100%; top: 0; bottom: 50px; overflow-x: hidden; background-color: #fff; overflow-wrap: break-word;' scroll-to-bottom='Comments.ui.scrollToBottom')
+  //    .col
+  //      .hbox.b-b.padder-v(ng-repeat='comment in Comments.data | orderBy: "created_at"')
+  //        //.col.text-center.thumb-sm
+  //        //  .fa-stack.fa-2x.text-dark
+  //        //    i.fa.fa-circle.fa-stack-2x
+  //        //    span.fa.fa-stack-1x.h3.fa-inverse.text-white.m-t-sm {{comment.user.name[0]}}
+  //        .col.clearfix
+  //          .col-xs-12
+  //            //.text-info-dker {{comment.user.name}}
+  //            //.text-danger-dker {{App.states[comment.state_id].name}}
+  //            //.text-success.dk {{comment.scheduled_on | date: 'MMM d, yyyy h:mm a'}}
+  //            //p {{comment.body}}
+  //            //.text-muted.pull-right(title='{{comment.created_on | date: "medium"}}') {{comment.created_at | date: 'd MMM, h:mm a'}}
+  //      .hbox(style='height: 40px;')
+  //  form.form.form-validation.col-xs-12.wrapper-xs.bg-white.col-xs-12(style='position: relative; height: 50px; width: 100%; bottom: 82px; background-color: #fff;' ng-submit='Comments.insert()' name='commentForm')
+  //    .input-group
+  //      input.form-control(type='text' name='comment' placeholder='enter to comment' ng-model='Comments.post.comment' required)
+  //      span.input-group-btn
+  //        button.btn.btn-default(type='sumbit' ng-disabled='commentForm.$invalid')
+  //          i.fa.fa-paper-plane
