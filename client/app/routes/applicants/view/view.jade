@@ -40,12 +40,22 @@ div
                 //        | {{ApplicantView.data.state_name}}&nbsp;
                 //        span(ng-if='App.states[ApplicantView.data.state_id].Actions.length>0').caret
 
-                .container
-                    .hbox(uib-dropdown='' uib-keyboard-nav='' dropdown-append-to-body)
-                      // Todo: #1 ChangeState Button Directive Creation
-                      span.label.label-primary(class='label-{{App.states[ApplicantView.data.state_id].config.color}}'uib-dropdown-toggle=''  ng-disabled='App.states[ApplicantView.data.state_id].Actions.length===0')
-                        | {{ApplicantView.data.state_name}}&nbsp;
-                        span(ng-if='App.states[ApplicantView.data.state_id].Actions.length>0').caret
+                .m-b-xs
+                  .hbox(uib-dropdown='' uib-keyboard-nav='' dropdown-append-to-body)
+                    // Todo: #1 ChangeState Button Directive Creation
+                    button.btn.rounded(class='btn-{{App.states[ApplicantView.data.state_id].config.color}}' uib-dropdown-toggle='' ng-disabled='App.states[ApplicantView.data.state_id].Actions.length===0')
+                      | {{ApplicantView.data.state_name}}&nbsp;
+                      span.caret(ng-if='App.states[ApplicantView.data.state_id].Actions.length>0')
+
+                    ul.uib-dropdown-menu(role='menu' aria-labelledby='simple-btn-keyboard-nav' uib-dropdown-menu='')
+                      li(role='menuitem' ng-repeat='state in App.states[ApplicantView.data.state_id].Actions' ng-if="App.states[state.state_id].name")
+                        a(href='' ng-click='App.changeState(ApplicantView.data, state.state_id)') {{App.states[state.state_id].name}}
+                //.container
+                //  .hbox(uib-dropdown='' uib-keyboard-nav='' dropdown-append-to-body)
+                //    // Todo: #1 ChangeState Button Directive Creation
+                //    span.label.label-primary(class='label-{{App.states[ApplicantView.data.state_id].config.color}}' uib-dropdown-toggle=''  ng-disabled='App.states[ApplicantView.data.state_id].Actions.length===0')
+                //      | {{ApplicantView.data.state_name}}&nbsp;
+                //      span(ng-if='App.states[ApplicantView.data.state_id].Actions.length>0').caret
 
 
 
