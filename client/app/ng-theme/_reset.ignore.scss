@@ -208,7 +208,7 @@ blockquote{
 .list-group-item{
   border-color: $list-group-item-border;
   padding-right: 15px;
-  a&{
+  a &{
     &:hover,
     &:focus,
     &.hover{
