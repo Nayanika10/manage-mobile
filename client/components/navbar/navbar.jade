@@ -7,8 +7,16 @@ div.bg-white
     //  i.fa.fa-align-justify
     //- brand
     .navbar-header(class='{{App.app.settings.navbarHeaderColor}}')
-      button.pull-right.visible-xs.dk(ng-click='App.app.settings.offScreen = !App.app.settings.offScreen')
+      button.pull-left.visible-xs.dk(ng-click='App.app.settings.offScreen = !App.app.settings.offScreen')
         i.fa.fa-align-justify
+
+      .navbar-header(class='{{App.app.settings.navbarHeaderColor}}')
+        button.navbar-toggle.toggle-right(type='button', data-toggle='sidebar', data-target='.sidebar-right')
+          i.fa.fa-wrench
+
+        .navbar-header(class='{{App.app.settings.navbarHeaderColor}}')
+          button.navbar-toggle.toggle-left(type='button', data-toggle='sidebar', data-target='.sidebar-left')
+            i.fa.fa-filter
   //- navbar collapse
   .collapse.pos-rlt.navbar-collapse.box-shadow(
   class='{{App.app.settings.navbarCollapseColor}}'

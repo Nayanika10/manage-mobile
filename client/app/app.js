@@ -1,5 +1,4 @@
 'use strict';
-'use strict';
 /**
  * angular-oauth2 - Angular OAuth2
  * @version v4.0.0
@@ -277,8 +276,6 @@ angular
 
 
 angular.module('uiGenApp', [
-  'uiGenApp.config',
-  'uiGenApp.constants',
   'qui.core',
   'ngAnimate',
   'ui.router',
@@ -291,10 +288,10 @@ angular.module('uiGenApp', [
   'easypiechart',
   'scrollable-table',
   'angularjs-dropdown-multiselect',
-    'angular-oauth2'
+  'angular-oauth2'
 ])
 
-  .config(function($urlRouterProvider, $locationProvider,RestangularProvider,URLS , OAuthProvider,OAuthTokenProvider) {
+  .config(function($urlRouterProvider, $locationProvider,RestangularProvider , OAuthProvider,OAuthTokenProvider) {
     OAuthTokenProvider.configure({
       name: 'token',
       options: {
@@ -302,15 +299,23 @@ angular.module('uiGenApp', [
         path: '/'
       }
     });
-    console.log('URLS.OAUTH_URL',URLS.OAUTH_URL)
+    var OAUTH_URL, QUARC_API;
+    if(location.hostname === ""){
+      OAUTH_URL = 'https://qapi.quezx.com';
+      QUARC_API = 'https://qapi.quezx.com/api'
+    } else {
+      OAUTH_URL = 'http://api.quezx.dev';
+      QUARC_API = 'http://api.quezx.dev/api';
+    }
+
     OAuthProvider.configure({
-      baseUrl: URLS.OAUTH_URL,
+      baseUrl: OAUTH_URL,
       clientId: 'partnerquezx',
       clientSecret: '8755f9261f52ce1f67789a550c131cff', // optional
       grantPath: '/oauth/token',
     });
 
-    RestangularProvider.setBaseUrl(URLS.QUARC_API);
+    RestangularProvider.setBaseUrl(QUARC_API); console.log(QUARC_API)
     $urlRouterProvider
       .otherwise('/search');
 
@@ -332,5 +337,13 @@ angular.module('uiGenApp', [
     return $state.go('login')
   });
 })
+.factory('QCONFIG', function(){
+      return {ENV:'development',APPLICANT_STATES:['Tasks','Shortlisted','Feedback','Rejected','All'],MANAGE_JD_STATES:['New','Accepted','Hidden','Rejected','All']}
+}).factory('URLS', function(){
+  return {QUARC_API:'http://api.quezx.dev/api',OAUTH_URL:'http://api.quezx.dev',MANAGE_OAUTH_API:'http://api.quezx.dev/applications/manage/api',ACCOUNTS:'//accounts.quezx.dev',OAUTH:'//accounts.quezx.dev/authorise?client_id=managequezx&response_type=code&redirect_uri=http://manage.quezx.dev/access/oauth&state=yo',STACKTRACEJS:false}
+})
+
+
+
 
 
