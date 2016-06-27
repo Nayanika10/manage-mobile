@@ -9,14 +9,12 @@ div.bg-white
     .navbar-header(class='{{App.app.settings.navbarHeaderColor}}')
       button.pull-left.visible-xs.dk(ng-click='App.app.settings.offScreen = !App.app.settings.offScreen')
         i.fa.fa-align-justify
-
       .navbar-header(class='{{App.app.settings.navbarHeaderColor}}')
         button.pull-right.visible-xs.dk(type='button', data-toggle='sidebar', data-target='.sidebar-right')
-          i.fa.fa-wrench
-
+          i.fa.fa-filter
         .navbar-header(class='{{App.app.settings.navbarHeaderColor}}')
           button.pull-left.visible-xs.dk(type='button', data-toggle='sidebar', data-target='.sidebar-left')
-            i.fa.fa-filter
+            i.fa.fa-wrench
   //- navbar collapse
   .collapse.pos-rlt.navbar-collapse.box-shadow(
   class='{{App.app.settings.navbarCollapseColor}}'

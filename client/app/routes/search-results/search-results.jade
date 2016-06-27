@@ -235,7 +235,7 @@
       //
       .container
         .row
-          .col-xs-7.col-sm-3.col-md-3.sidebar.sidebar-right.sidebar-animate(style="background:white")
+          .col-xs-7.col-sm-3.col-md-3.sidebar.sidebar-left.sidebar-animate(style="background:white")
             ul.nav.sidebar-nav
               li.sidebar-brand
                 a.sidebar-brand
@@ -271,13 +271,13 @@
                 |     Location
               br
               li
-                input(type='radio', name='filter' ng-model='filter', value='brown')
-                |     Industry
+                input(type='radio', name='filter' ng-model='filter', value='applicant._root_.role')
+                |     Position
               br
 
       .container
         .row
-          .col-xs-7.col-sm-3.col-md-3.sidebar.sidebar-left.sidebar-animate(style="background:white")
+          .col-xs-7.col-sm-3.col-md-3.sidebar.sidebar-right.sidebar-animate(style="background:white")
             ul.nav.sidebar-nav
               li.sidebar-brand
                 a.sidebar-brand
@@ -285,7 +285,7 @@
                   |  Filter
               div( style='position: relative;' ng-init="sideb = {showCEMFacet:false,showCFacet:false,showCUNFacet:false}")
                     .w.m-t-xl.nav-job(style='margin-top: 0px !important;top: 51px !important;width: 223px !important;')
-                      .w.m-t-xs(style='position: relative;  overflow-y: scroll; overflow-x: hidden; height: 100%; width: 193px;')
+                      .w.m-t-xs(style='position: relative;  overflow-y: scroll; overflow-x: hidden; height: 100%; width: 183px;')
                         .m-t-sm
                         .m-t-sm
                         .m-t-sm

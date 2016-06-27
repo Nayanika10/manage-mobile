@@ -19,7 +19,7 @@
     },
     "installed_plugins": {
         "cordova-plugin-whitelist": {
-            "PACKAGE_NAME": "com.quezx.internal"
+            "PACKAGE_NAME": "com.quezx.manage"
         }
     },
     "dependent_plugins": {},
