@@ -9,7 +9,7 @@ angular.module("angular-oauth2", ['ngCookies']).config(oauthConfig).factory("oau
 function oauthConfig($httpProvider) {
   $httpProvider.interceptors.push("oauthInterceptor");
 }
-oauthConfig.$inject = [ "$httpProvider" ];
+oauthConfig.$inject = ["$httpProvider"];
 function oauthInterceptor($q, $rootScope, OAuthToken) {
   return {
     request: function request(config) {
@@ -31,8 +31,8 @@ function oauthInterceptor($q, $rootScope, OAuthToken) {
     }
   };
 }
-oauthInterceptor.$inject = [ "$q", "$rootScope", "OAuthToken" ];
-var _createClass = function() {
+oauthInterceptor.$inject = ["$q", "$rootScope", "OAuthToken"];
+var _createClass = function () {
   function defineProperties(target, props) {
     for (var i = 0; i < props.length; i++) {
       var descriptor = props[i];
@@ -42,7 +42,8 @@ var _createClass = function() {
       Object.defineProperty(target, descriptor.key, descriptor);
     }
   }
-  return function(Constructor, protoProps, staticProps) {
+
+  return function (Constructor, protoProps, staticProps) {
     if (protoProps) defineProperties(Constructor.prototype, protoProps);
     if (staticProps) defineProperties(Constructor, staticProps);
     return Constructor;
@@ -60,10 +61,10 @@ var defaults = {
   grantPath: "/oauth2/token",
   revokePath: "/oauth2/revoke"
 };
-var requiredKeys = [ "baseUrl", "clientId", "grantPath", "revokePath" ];
+var requiredKeys = ["baseUrl", "clientId", "grantPath", "revokePath"];
 function OAuthProvider() {
   var config;
-  this.configure = function(params) {
+  this.configure = function (params) {
     if (config) {
       throw new Error("Already configured.");
     }
@@ -71,7 +72,7 @@ function OAuthProvider() {
       throw new TypeError("Invalid argument: `config` must be an `Object`.");
     }
     config = angular.extend({}, defaults, params);
-    angular.forEach(requiredKeys, function(key) {
+    angular.forEach(requiredKeys, function (key) {
       if (!config[key]) {
         throw new Error("Missing parameter: " + key + ".");
       }
@@ -87,15 +88,16 @@ function OAuthProvider() {
     }
     return config;
   };
-  this.$get = function($http, OAuthToken) {
-    var OAuth = function() {
+  this.$get = function ($http, OAuthToken) {
+    var OAuth = function () {
       function OAuth() {
         _classCallCheck(this, OAuth);
         if (!config) {
           throw new Error("`OAuthProvider` must be configured first.");
         }
       }
-      _createClass(OAuth, [ {
+
+      _createClass(OAuth, [{
         key: "isAuthenticated",
         value: function isAuthenticated() {
           return !!OAuthToken.getToken();
@@ -117,7 +119,7 @@ function OAuthProvider() {
               "Content-Type": "application/x-www-form-urlencoded"
             }
           }, options);
-          return $http.post("" + config.baseUrl + config.grantPath, data, options).then(function(response) {
+          return $http.post("" + config.baseUrl + config.grantPath, data, options).then(function (response) {
             OAuthToken.setToken(response.data);
             return response;
           });
@@ -140,7 +142,7 @@ function OAuthProvider() {
               "Content-Type": "application/x-www-form-urlencoded"
             }
           }, options);
-          return $http.post("" + config.baseUrl + config.grantPath, data, options).then(function(response) {
+          return $http.post("" + config.baseUrl + config.grantPath, data, options).then(function (response) {
             OAuthToken.setToken(response.data);
             return response;
           });
@@ -163,19 +165,19 @@ function OAuthProvider() {
               "Content-Type": "application/x-www-form-urlencoded"
             }
           }, options);
-          return $http.post("" + config.baseUrl + config.revokePath, data, options).then(function(response) {
+          return $http.post("" + config.baseUrl + config.revokePath, data, options).then(function (response) {
             OAuthToken.removeToken();
             return response;
           });
         }
-      } ]);
+      }]);
       return OAuth;
     }();
     return new OAuth();
   };
-  this.$get.$inject = [ "$http", "OAuthToken" ];
+  this.$get.$inject = ["$http", "OAuthToken"];
 }
-var _createClass = function() {
+var _createClass = function () {
   function defineProperties(target, props) {
     for (var i = 0; i < props.length; i++) {
       var descriptor = props[i];
@@ -185,7 +187,8 @@ var _createClass = function() {
       Object.defineProperty(target, descriptor.key, descriptor);
     }
   }
-  return function(Constructor, protoProps, staticProps) {
+
+  return function (Constructor, protoProps, staticProps) {
     if (protoProps) defineProperties(Constructor.prototype, protoProps);
     if (staticProps) defineProperties(Constructor, staticProps);
     return Constructor;
@@ -204,19 +207,20 @@ function OAuthTokenProvider() {
       secure: true
     }
   };
-  this.configure = function(params) {
+  this.configure = function (params) {
     if (!(params instanceof Object)) {
       throw new TypeError("Invalid argument: `config` must be an `Object`.");
     }
     angular.extend(config, params);
     return config;
   };
-  this.$get = function($cookies) {
-    var OAuthToken = function() {
+  this.$get = function ($cookies) {
+    var OAuthToken = function () {
       function OAuthToken() {
         _classCallCheck(this, OAuthToken);
       }
-      _createClass(OAuthToken, [ {
+
+      _createClass(OAuthToken, [{
         key: "setToken",
         value: function setToken(data) {
           return config.storage ? config.storage.setItem(config.name, JSON.stringify(data)) : $cookies.putObject(config.name, data, config.options);
@@ -252,15 +256,15 @@ function OAuthTokenProvider() {
       }, {
         key: "removeToken",
         value: function removeToken() {
-          console.log("removing token",config.name)
+          console.log("removing token", config.name)
           return config.storage ? config.storage.removeItem(config.name) : $cookies.remove(config.name, config.options);
         }
-      } ]);
+      }]);
       return OAuthToken;
     }();
     return new OAuthToken();
   };
-  this.$get.$inject = [ "$cookies" ];
+  this.$get.$inject = ["$cookies"];
 }
 
 angular.module('qui.components', [])
@@ -271,27 +275,26 @@ angular
     'http-auth-interceptor',
   ])
   .constant('MODULE_VERSION', '0.0.1')
-  // this configs to initiated using provider
-
+// this configs to initiated using provider
 
 
 angular.module('uiGenApp', [
-  'qui.core',
-  'ngAnimate',
-  'ui.router',
-  'ui.bootstrap',
-  'mwl.calendar',
-  'chart.js',
-  'restangular',
-  'ngFileUpload',
-  'angular-loading-bar',
-  'easypiechart',
-  'scrollable-table',
-  'angularjs-dropdown-multiselect',
-  'angular-oauth2'
-])
+    'qui.core',
+    'ngAnimate',
+    'ui.router',
+    'ui.bootstrap',
+    'mwl.calendar',
+    'chart.js',
+    'restangular',
+    'ngFileUpload',
+    'angular-loading-bar',
+    'easypiechart',
+    'scrollable-table',
+    'angularjs-dropdown-multiselect',
+    'angular-oauth2'
+  ])
 
-  .config(function($urlRouterProvider, $locationProvider,RestangularProvider , OAuthProvider,OAuthTokenProvider) {
+  .config(function ($urlRouterProvider, $locationProvider, RestangularProvider, OAuthProvider, OAuthTokenProvider) {
     OAuthTokenProvider.configure({
       name: 'token',
       options: {
@@ -300,13 +303,9 @@ angular.module('uiGenApp', [
       }
     });
     var OAUTH_URL, QUARC_API;
-    if(location.hostname === ""){
-      OAUTH_URL = 'https://qapi.quezx.com';
-      QUARC_API = 'https://qapi.quezx.com/api'
-    } else {
-      OAUTH_URL = 'http://api.quezx.dev';
-      QUARC_API = 'http://api.quezx.dev/api';
-    }
+    console.log("Host url", location.hostname);
+    OAUTH_URL = 'https://qapi.quezx.com';
+    QUARC_API = 'https://qapi.quezx.com/api'
 
     OAuthProvider.configure({
       baseUrl: OAUTH_URL,
@@ -315,32 +314,44 @@ angular.module('uiGenApp', [
       grantPath: '/oauth/token',
     });
 
-    RestangularProvider.setBaseUrl(QUARC_API); console.log(QUARC_API)
+    RestangularProvider.setBaseUrl(QUARC_API);
+    console.log(QUARC_API)
     $urlRouterProvider
       .otherwise('/search');
 
 
-  }).run(function($rootScope,$window,OAuth, $state) {
+  }).run(function ($rootScope, $window, OAuth, $state) {
 
-  $rootScope.$on('oauth:error', function (event, rejection) {
-    // Ignore `invalid_grant` error - should be catched on `LoginController`.
-    if ('invalid_grant' === rejection.data.error) {
-      return;
+    $rootScope.$on('oauth:error', function (event, rejection) {
+      // Ignore `invalid_grant` error - should be catched on `LoginController`.
+      if ('invalid_grant' === rejection.data.error) {
+        return;
+      }
+
+      // Refresh token when a `invalid_token` error occurs.
+      if ('invalid_token' === rejection.data.error) {
+        return OAuth.getRefreshToken();
+      }
+
+      // Redirect to `/login` with the `error_reason`.
+      return $state.go('login')
+    });
+  })
+  .factory('QCONFIG', function () {
+    return {
+      ENV: 'development',
+      APPLICANT_STATES: ['Tasks', 'Shortlisted', 'Feedback', 'Rejected', 'All'],
+      MANAGE_JD_STATES: ['New', 'Accepted', 'Hidden', 'Rejected', 'All']
     }
-
-    // Refresh token when a `invalid_token` error occurs.
-    if ('invalid_token' === rejection.data.error) {
-      return OAuth.getRefreshToken();
-    }
-
-    // Redirect to `/login` with the `error_reason`.
-    return $state.go('login')
-  });
-})
-.factory('QCONFIG', function(){
-      return {ENV:'development',APPLICANT_STATES:['Tasks','Shortlisted','Feedback','Rejected','All'],MANAGE_JD_STATES:['New','Accepted','Hidden','Rejected','All']}
-}).factory('URLS', function(){
-  return {QUARC_API:'http://api.quezx.dev/api',OAUTH_URL:'http://api.quezx.dev',MANAGE_OAUTH_API:'http://api.quezx.dev/applications/manage/api',ACCOUNTS:'//accounts.quezx.dev',OAUTH:'//accounts.quezx.dev/authorise?client_id=managequezx&response_type=code&redirect_uri=http://manage.quezx.dev/access/oauth&state=yo',STACKTRACEJS:false}
+  }).factory('URLS', function () {
+  return {
+    QUARC_API: 'https://qapi.quezx.com/api',
+    OAUTH_URL: 'https://qapi.quezx.com',
+    MANAGE_OAUTH_API: 'https://qapi.quezx.com/applications/manage/api',
+    ACCOUNTS: '//accounts.quezx.com',
+    OAUTH: '//accounts.quezx.com/authorise?client_id=managequezx&response_type=code&redirect_uri=https://manage.quezx.com/access/oauth&state=yo',
+    STACKTRACEJS: false
+  }
 })
 
 
