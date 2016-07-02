@@ -18,6 +18,10 @@ function ScoreboardComponent($scope, $http, $q, $interval) {
           )
           .then(function (res) {
             console.log(res);
+            if(res.data.length == 0) {
+              console.log("ScoreboardComponent", "No value for id:"+id, res);
+              return;
+            }
             $scope.data[id - 1] = res.data[0];
             $scope.data[id - 1].target = res.data[1] ? res.data[1].target : null;
           })
