@@ -246,8 +246,13 @@
                 |     Client EM
               br
               li
-                input(type='radio', name='filter' ng-model='filter', value='consultant_eng_mgr_name')
+                input(type='radio', name='filter' ng-model='filter', value='eng_mgr_name')
                 |     Consultant EM
+              br
+
+              li
+                input(type='radio', name='filter' ng-model='filter', value='applicant_score')
+                |     Score
               br
               //li
               //  a.dropdown-toggle(href='#contact',ng-click="$event.preventDefault();",data-toggle='dropdown')
@@ -271,7 +276,7 @@
                 |     Location
               br
               li
-                input(type='radio', name='filter' ng-model='filter', value='applicant._root_.role')
+                input(type='radio', name='filter' ng-model='filter', value='role')
                 |     Position
               br
 

@@ -49,6 +49,8 @@ angular.module('uiGenApp')
       exp_location:{},
       interview_time:{},
       updated_on:{},
+      applicant_score:{},
+
 
     };
     $scope.queryJob = {
@@ -272,7 +274,8 @@ angular.module('uiGenApp')
 
           // !refresh ? null : ($scope.applicants = []);
           res.response.docs.forEach(function(applicant) {
-
+            applicant.role = applicant._root_.role;
+            applicant.client_eng_mgr_name = applicant._root_.eng_mgr_name;
             $scope.applicants.push(applicant);
             //console.log($scope.applicants);
           });
@@ -472,7 +475,7 @@ angular.module('uiGenApp')
 }(jQuery);
 angular.module('radioExample', [])
   .controller('ExampleController', ['$scope', function($scope) {
-
+    console.log()
 
     // $scope.specialValue = {
     //   "id": "12345",
