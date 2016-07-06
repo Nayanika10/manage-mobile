@@ -69,3 +69,12 @@
   font-weight: normal;
   cursor: pointer;
 }
+.hover:hover .history {
+  display: block !important;
+}
+.history{
+  display: none;
+}
+.tooltip-inner {
+  white-space:pre-wrap;
+}

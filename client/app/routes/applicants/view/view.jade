@@ -75,21 +75,33 @@ div
                     .col-md-3.nav-comment.no-padder(ng-controller='ApplicantCommentsController as Comments')
                       .col-xs-12(style='position: relative; height: 100%; width: 100%; top: 0; bottom: 50px; overflow-x: hidden; background-color: #fff; overflow-wrap: break-word;' scroll-to-bottom='Comments.ui.scrollToBottom')
                         .col
-                          .hbox.b-b.padder-v(ng-repeat='comment in Comments.data | orderBy: "created_at"')
-                            //.col.text-center.thumb-sm
-                            //.fa-stack.fa-2x.text-dark
-                            //i.fa.fa-circle.fa-stack-2x
-                            //span.fa.fa-stack-1x.h3.fa-inverse.text-white.m-t-sm {{comment.user.name[0]}}
+                          .hbox.b-b.padder-v(ng-repeat='comment in Comments.data | orderBy: ["created_at","id"]' ng-init="followUpLast=false;" )
+                            //| {{comment.State.FollowUpOptions}}
                             .col.clearfix
-                              .col-xs-12
-                              .text-info-dker {{comment.user.name}}
-                              .text-danger-dker {{App.states[comment.state_id].name}}
-                              .text-success.dk {{comment.scheduled_on | date: 'MMM d, yyyy h:mm a'}}
-                              p {{comment.body}}
-                              .text-muted.pull-right(title='{{comment.created_on | date: "medium"}}') {{comment.created_at | date: 'd MMM, h:mm a'}}
+                              .col-xs-12(ng-init='comment.followUpOptionId= comment.InterviewFollowUps[comment.InterviewFollowUps.length-1].follow_up_option_id')
+                                .text-info-dker {{comment.user.name}}
+                                .text-danger-dker {{App.states[comment.state_id].name}}
+                                span(ng-class="'{{comment.InterviewFollowUps[comment.InterviewFollowUps.length-1].FollowUpOption.class}}'"
+                                ng-if="comment.State.FollowUpOptions.length" ) {{comment.InterviewFollowUps[comment.InterviewFollowUps.length-1].FollowUpOption.name}}
+                                .row.hover(ng-if="comment.State.FollowUpOptions.length" )
+                                  .history(ng-if="comment.InterviewFollowUps.length")
+                                    //ul
+                                    //  li(ng-repeat="item in comment.InterviewFollowUps | orderBy: '-id'")
+                                    //    | {{item.FollowUpOption.name}} - {{item.created_on | date: 'd MMM, h:mm a'}}
+                                        span(ng-init='comment.followUpOptionId= $last?item.follow_up_option_id:"Nothing"')
 
+                                  label(ng-repeat="followUpOption in comment.State.FollowUpOptions")
+                                    input#orgSize1(type="radio", ng-model='comment.followUpOptionId', ng-disabled="followUpLast" name="radio_{{comment.id}}",
+                                    ng-change="Comments.updateResponse(ApplicantView.data.id,comment)" ng-value="followUpOption.id" )
+                                    | {{followUpOption.name}}
+                                  span.padder
+                                ul(ng-if='comment.ApplicantStateReasons.length>0')(ng-repeat="reason in comment.ApplicantStateReasons")
+                                  li.text-danger {{reason.Reason.reason}}
+                                .text-success.dk {{comment.scheduled_on | date: 'MMM d, yyyy h:mm a'}}
+                                p {{comment.body}}
+                                .text-muted.pull-right(title='{{comment.created_on | date: "medium"}}') {{comment.created_at | date: 'd MMM, h:mm a'}}
                           .hbox(style='height: 40px;')
-                      form.form.form-validation.col-xs-12.wrapper-xs.bg-white.col-xs-12(style='position: relative; height: 50px; width: 100%; bottom: 82px; background-color: #fff;' ng-submit='Comments.insert()' name='commentForm')
+                      form.form.form-validation.col-xs-12.wrapper-xs.bg-white.col-xs-12(style='position: relative; height: 50px; width: 100%; bottom: 40px; background-color: #fff;' ng-submit='Comments.insert()' name='commentForm')
                         .input-group
                           input.form-control(type='text' name='comment' placeholder='enter to comment' ng-model='Comments.post.comment' required)
                           span.input-group-btn
